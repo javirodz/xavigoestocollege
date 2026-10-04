@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xavier's Dig Site | College Application Field Log</title>
+<meta name="description" content="A field log for Xavier's college applications to Virginia Tech, James Madison University and George Mason University, laid out in geologic layers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#f1e7d3;
+  --sand-2:#e6d6b8;
+  --clay:#c98a4b;
+  --rust:#a4492a;
+  --umber:#4a3320;
+  --soil:#2b1d12;
+  --fern:#4f6b3a;
+  --fern-2:#dbe5c9;
+  --bone:#fbf6ea;
+  --ink:#2a2118;
+  --muted:#6f5e4b;
+  --line:#cdb994;
+  --gold:#d9a441;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:var(--sand);
+  line-height:1.55;
+  font-size:17px;
+}
+h1,h2,h3{font-family:"Alfa Slab One","Rockwell","Georgia",serif;font-weight:400;letter-spacing:.01em;margin:0}
+a{color:var(--rust)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* hero */
+.hero{
+  background:
+    radial-gradient(circle at 85% 20%, rgba(217,164,65,.35), transparent 40%),
+    linear-gradient(180deg,#3b2817 0%, #5a3a21 100%);
+  color:var(--bone);
+  position:relative;
+  overflow:hidden;
+  padding:56px 0 0;
+}
+.hero .eyebrow{
+  text-transform:uppercase;letter-spacing:.2em;font-size:.8rem;font-weight:700;color:var(--gold);
+}
+.hero h1{font-size:clamp(2.1rem,6vw,3.7rem);line-height:1.05;margin:10px 0 14px}
+.hero p.lead{max-width:600px;font-size:1.1rem;color:#eadcc0;margin:0 0 26px}
+.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:end}
+.hero svg.rex{width:100%;height:auto;display:block;margin-bottom:-4px}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.chip{
+  background:rgba(251,246,234,.1);
+  border:1px solid rgba(251,246,234,.28);
+  border-radius:12px;padding:10px 16px;min-width:150px;
+}
+.chip b{display:block;font-family:"Alfa Slab One",Georgia,serif;font-weight:400;font-size:1.9rem;line-height:1;color:var(--gold)}
+.chip span{font-size:.85rem;color:#eadcc0}
+.strata-edge{height:26px;background:
+  repeating-linear-gradient(90deg,transparent 0 38px,rgba(0,0,0,.08) 38px 40px),
+  linear-gradient(180deg,var(--clay) 0 33%, #b57638 33% 66%, #9a6230 66% 100%);}
+.footprints{display:flex;gap:26px;justify-content:center;opacity:.55;padding:18px 0 4px}
+.footprints svg{width:34px;height:auto}
+.footprints svg:nth-child(even){transform:translateY(10px) rotate(8deg)}
+.footprints svg:nth-child(odd){transform:rotate(-8deg)}
+
+/* nav */
+nav.jump{
+  position:sticky;top:0;z-index:5;
+  background:var(--soil);
+  border-bottom:3px solid var(--gold);
+}
+nav.jump .wrap{display:flex;gap:6px;overflow-x:auto;padding:0 12px}
+nav.jump a{
+  color:#eadcc0;text-decoration:none;white-space:nowrap;
+  padding:12px 14px;font-weight:600;font-size:.93rem;
+}
+nav.jump a:hover{color:var(--gold)}
+
+section{padding:52px 0 8px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.sec-head h2{font-size:clamp(1.5rem,3.5vw,2.1rem);color:var(--umber)}
+.sec-head svg{width:40px;height:40px;flex:none}
+.sub{color:var(--muted);margin:0 0 24px;max-width:680px}
+
+/* school cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:var(--bone);border:1px solid var(--line);border-radius:14px;
+  padding:0 0 16px;overflow:hidden;box-shadow:0 2px 0 var(--line);
+}
+.card .tag{
+  background:var(--umber);color:var(--bone);
+  font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;
+  padding:8px 18px;
+}
+.card h3{font-size:1.35rem;margin:14px 18px 2px;color:var(--rust)}
+.card .when{margin:0 18px 10px;font-weight:700}
+.card ul{margin:0;padding:0 18px 0 36px;font-size:.96rem}
+.card li{margin-bottom:5px}
+.note{
+  margin-top:20px;background:var(--fern-2);border-left:6px solid var(--fern);
+  padding:12px 16px;border-radius:0 10px 10px 0;font-size:.97rem;
+}
+
+/* prep lab table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--bone)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--sand-2);vertical-align:top}
+th{background:var(--umber);color:var(--bone);font-size:.78rem;text-transform:uppercase;letter-spacing:.12em}
+tr:last-child td{border-bottom:0}
+.badge{
+  display:inline-block;border-radius:999px;padding:3px 12px;font-size:.8rem;font-weight:700;white-space:nowrap
+}
+.b-done{background:var(--fern-2);color:#34491f}
+.b-next{background:#f6e2b5;color:#7a4e0c}
+.b-todo{background:#ecdcc9;color:#6a4b30}
+.b-skip{background:#e3e0da;color:#5b564e}
+
+/* strata timeline */
+.strata{display:flex;flex-direction:column;gap:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.layer{display:grid;grid-template-columns:210px 1fr;position:relative}
+.layer .era{
+  padding:22px 20px;color:var(--bone);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.layer .era small{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700;opacity:.85}
+.layer .era h3{font-size:1.45rem;margin:4px 0 2px}
+.layer .era span{font-size:.88rem;opacity:.9}
+.layer .body{padding:20px 24px;background:var(--bone)}
+.layer .body ul{list-style:none;margin:0;padding:0}
+.layer .body li{
+  display:flex;gap:12px;align-items:flex-start;padding:6px 0;
+  border-bottom:1px dashed var(--sand-2);
+}
+.layer .body li:last-child{border-bottom:0}
+.box{
+  flex:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--clay);margin-top:2px;background:#fff;
+  display:grid;place-items:center;
+}
+.done .box{background:var(--fern);border-color:var(--fern)}
+.done .box::after{content:"";width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.done .txt{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(111,94,75,.5)}
+.l1 .era{background:#7a4a22}
+.l2 .era{background:#8f5a2a}
+.l3 .era{background:#a56a33}
+.l4 .era{background:#4f6b3a}
+.l5 .era{background:#a4492a}
+.mini{width:100%;margin-top:8px;border:1px solid var(--sand-2);border-radius:10px;overflow:hidden;min-width:0}
+.mini table{min-width:0}
+.mini th{background:var(--sand-2);color:var(--umber)}
+.mini td:first-child{white-space:nowrap;font-weight:700;color:var(--rust)}
+
+/* closing */
+.finish{
+  margin-top:56px;background:var(--soil);color:#eadcc0;padding:40px 0 32px;
+  border-top:8px solid var(--gold);
+}
+.finish h2{color:var(--gold);font-size:1.5rem;margin-bottom:10px}
+.finish p{max-width:700px;margin:0 0 10px}
+.finish small{color:#b9a98d}
+
+@media (max-width:860px){
+  .cards{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr}
+  .hero svg.rex{max-width:420px;margin:0 auto}
+  .layer{grid-template-columns:1fr}
+  .layer .era{padding:14px 20px}
+  body{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Field log, Fall 2026</div>
+        <h1>Xavier's Dig Site</h1>
+        <p class="lead">Applications to Virginia Tech, James Madison and George Mason, all under Early Action. Virginia Tech is submitted. James Madison and George Mason are next, and every layer below is one week of work.</p>
+        <div class="chips" aria-label="Countdown">
+          <div class="chip"><b id="d-target">--</b><span>days to JMU and GMU target submission, Thu Oct 29</span></div>
+          <div class="chip"><b id="d-deadline">--</b><span>days to JMU and GMU deadline, Sun Nov 1</span></div>
+        </div>
+      </div>
+      <!-- generic theropod silhouette -->
+      <svg class="rex" viewBox="0 0 320 190" role="img" aria-label="Silhouette of a theropod dinosaur">
+        <path fill="#f1e7d3" opacity=".92" d="
+          M6,150 C40,146 78,138 104,118
+          C122,104 134,86 156,78
+          C176,70 192,72 206,66
+          C214,54 220,40 236,34
+          C252,28 276,30 292,36
+          C304,41 308,50 304,58
+          C300,66 290,66 284,67
+          C282,72 276,74 270,73
+          L268,79 L261,74
+          C254,79 244,80 236,78
+          C230,86 226,94 226,104
+          C226,112 222,116 214,116
+          L208,118
+          C216,120 218,125 212,128
+          C206,128 202,124 198,120
+          C196,134 190,146 180,152
+          L186,176 L204,180 L204,186 L166,186 L166,178 L174,176
+          L166,156
+          C150,152 136,146 126,138
+          C122,152 118,168 112,178 L128,182 L128,186 L92,186 L92,178 L102,176
+          C104,160 108,146 112,134
+          C90,146 50,152 6,150 Z"/>
+        <circle cx="270" cy="47" r="3.2" fill="#3b2817"/>
+        <path d="M262,70 l3,6 l3,-6 l3,6 l3,-6" fill="none" stroke="#3b2817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+  <div class="strata-edge" aria-hidden="true"></div>
+</header>
+
+<nav class="jump" aria-label="Page sections">
+  <div class="wrap">
+    <a href="#sites">Dig Sites</a>
+    <a href="#lab">Prep Lab</a>
+    <a href="#strata">Strata</a>
+    <a href="#after">After the Dig</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="sites">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#a4492a"/><path d="M20 8 L20 32 M8 20 L32 20" stroke="#f1e7d3" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="20" r="5" fill="#f1e7d3"/></svg>
+    <h2>The Three Dig Sites</h2>
+  </div>
+  <p class="sub">The school's own deadline and requirements for each site. Early Action is non-binding at all three.</p>
+  <div class="cards">
+    <article class="card">
+      <div class="tag">Site 1</div>
+      <h3>Virginia Tech</h3>
+      <p class="when">Submitted Oct 4, 2026. Official deadline was Nov 15.</p>
+      <ul>
+        <li>Ut Prosim Profile: 4 short answers, 120 words each, now locked</li>
+        <li>Honors College box checked</li>
+        <li>Next: the Applicant Portal email, then the self-reported STARS course record</li>
+        <li>Test optional</li>
+        <li>Fee $60</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="tag">Site 2</div>
+      <h3>James Madison</h3>
+      <p class="when">Nov 1. Every piece is due that day.</p>
+      <ul>
+        <li>Application, official transcript with senior schedule, and Honors essays all due Nov 1</li>
+        <li>Honors College: 2 essays, 200 words each (the prompts say max 220), entered with the application</li>
+        <li>Transcript sent electronically by the school counselor</li>
+        <li>Test optional</li>
+        <li>Fee $70</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="tag">Site 3</div>
+      <h3>George Mason</h3>
+      <p class="when">Nov 1, 11:59 pm ET. Regular Decision is Feb 1.</p>
+      <ul>
+        <li>Honors College essay: 500 words max, choose 1 of 2 prompts</li>
+        <li>Official transcript required</li>
+        <li>Recommendation letter submitted through the Common App</li>
+        <li>Score optional</li>
+        <li>Fee $75</li>
+      </ul>
+    </article>
+  </div>
+  <div class="note"><strong>Plan:</strong> Virginia Tech went in on October 4. The target for James Madison and George Mason is Thursday, October 29, which leaves three days of cushion before the Sunday, November 1 deadline.</div>
+</section>
+
+<section id="lab">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 28 C4 26 4 20 9 19 C8 14 14 12 16 16 L24 24 C28 22 33 25 31 30 C34 33 30 38 26 35 C23 37 18 35 18 32 Z" fill="#d9a441" stroke="#4a3320" stroke-width="2" stroke-linejoin="round"/></svg>
+    <h2>The Prep Lab</h2>
+  </div>
+  <p class="sub">Essays are cleaned and brushed here before they go in the box. Status as of October 4, 2026.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Specimen</th><th>Length</th><th>Status</th><th>Next</th></tr></thead>
+      <tbody>
+        <tr><td>VT Ut Prosim 1: Community</td><td>120 words</td><td><span class="badge b-done">Submitted</span></td><td>Locked, nothing more to do</td></tr>
+        <tr><td>VT Ut Prosim 2</td><td>120 words</td><td><span class="badge b-done">Submitted</span></td><td>Locked, nothing more to do</td></tr>
+        <tr><td>VT Ut Prosim 3: Leadership</td><td>120 words</td><td><span class="badge b-done">Submitted</span></td><td>Locked, nothing more to do</td></tr>
+        <tr><td>VT Ut Prosim 4: A goal</td><td>120 words</td><td><span class="badge b-done">Submitted</span></td><td>Locked, nothing more to do</td></tr>
+        <tr><td>JMU Honors 1: Ideal college experience</td><td>200 words (max 220)</td><td><span class="badge b-todo">Not started</span></td><td>Brainstorming questions ready, first draft by Oct 11</td></tr>
+        <tr><td>JMU Honors 2: Quality that matters most</td><td>200 words (max 220)</td><td><span class="badge b-todo">Not started</span></td><td>Brainstorming questions ready, first draft by Oct 11</td></tr>
+        <tr><td>GMU Honors (1 of 2 prompts)</td><td>500 words max</td><td><span class="badge b-todo">Not started</span></td><td>Pick one prompt, first draft by Oct 11</td></tr>
+        <tr><td>Common App personal essay</td><td>650 words</td><td><span class="badge b-skip">Not submitting</span></td><td>Optional at all three schools</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="strata">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="6" width="34" height="8" fill="#7a4a22"/><rect x="3" y="14" width="34" height="8" fill="#a56a33"/><rect x="3" y="22" width="34" height="8" fill="#c98a4b"/><rect x="3" y="30" width="34" height="5" fill="#4f6b3a"/></svg>
+    <h2>The Strata</h2>
+  </div>
+  <p class="sub">Five layers, oldest at the top. Checked items are done.</p>
+
+  <div class="strata">
+
+    <div class="layer l1">
+      <div class="era"><small>Layer 1</small><h3>Triassic</h3><span>Sep 28 to Oct 4<br>Setup and first brushwork</span></div>
+      <div class="body"><ul>
+        <li class="done"><span class="box"></span><span class="txt">VT Ut Prosim first drafts</span></li>
+        <li class="done"><span class="box"></span><span class="txt">Apply to the Honors College at VT, JMU and GMU</span></li>
+        <li class="done"><span class="box"></span><span class="txt">Common App: all three schools added, Early Action selected</span></li>
+        <li class="done"><span class="box"></span><span class="txt">Profile, family and education sections</span></li>
+        <li class="done"><span class="box"></span><span class="txt">Decide on the optional personal essay (no)</span></li>
+        <li class="done"><span class="box"></span><span class="txt">Recommendation letter requested through the Common App (GMU Honors)</span></li>
+        <li class="done"><span class="box"></span><span class="txt">Transcript copy and senior schedule in hand for the VT course record</span></li>
+        <li class="done"><span class="box"></span><span class="txt">VT Ut Prosim essays revised and closed</span></li>
+        <li class="done"><span class="box"></span><span class="txt">Activities and Additional information entered</span></li>
+        <li class="done"><span class="box"></span><span class="txt">Virginia Tech application submitted, Oct 4</span></li>
+        <li><span class="box"></span><span class="txt">Request official transcripts for JMU and GMU from the school counselor</span></li>
+        <li><span class="box"></span><span class="txt">Ask the counselor for the school's internal deadlines for transcripts and letters</span></li>
+                <li><span class="box"></span><span class="txt">Brainstorm the JMU Honors prompts</span></li>
+        <li><span class="box"></span><span class="txt">Brainstorm the GMU Honors prompt choice</span></li>
+      </ul></div>
+    </div>
+
+    <div class="layer l2">
+      <div class="era"><small>Layer 2</small><h3>Jurassic</h3><span>Oct 5 to Oct 11<br>First drafts</span></div>
+      <div class="body"><ul>
+        <li><span class="box"></span><span class="txt">JMU Honors first drafts, both essays (due Oct 11)</span></li>
+        <li><span class="box"></span><span class="txt">GMU Honors first draft (due Oct 11)</span></li>
+        <li><span class="box"></span><span class="txt">VT STARS record, once the Applicant Portal opens</span></li>
+      </ul></div>
+    </div>
+
+    <div class="layer l3">
+      <div class="era"><small>Layer 3</small><h3>Cretaceous</h3><span>Oct 12 to Oct 18<br>Feedback and revisions</span></div>
+      <div class="body"><ul>
+        <li><span class="box"></span><span class="txt">Feedback on the JMU and GMU Honors first drafts</span></li>
+        <li><span class="box"></span><span class="txt">Xavier revises each essay</span></li>
+        <li><span class="box"></span><span class="txt">Check the Common App activities and Additional information before submitting JMU and GMU</span></li>
+      </ul></div>
+    </div>
+
+    <div class="layer l4">
+      <div class="era"><small>Layer 4</small><h3>Paleogene</h3><span>Oct 19 to Oct 25<br>Polish</span></div>
+      <div class="body"><ul>
+        <li><span class="box"></span><span class="txt">Final feedback round on all essays</span></li>
+        <li><span class="box"></span><span class="txt">Word counts at or under the limits: 200 (JMU Honors), 500 (GMU Honors)</span></li>
+        <li><span class="box"></span><span class="txt">Mechanics check, with Xavier making every correction</span></li>
+        <li><span class="box"></span><span class="txt">Confirm the transcripts were sent and the recommendation letter shows as submitted</span></li>
+      </ul></div>
+    </div>
+
+    <div class="layer l5">
+      <div class="era"><small>Layer 5</small><h3>Summit</h3><span>Oct 26 to Nov 1<br>Final checks and submit</span></div>
+      <div class="body">
+        <div class="mini tbl-wrap"><table>
+          <tbody>
+            <tr><td>Mon Oct 26</td><td>Final read of every essay and short answer</td></tr>
+            <tr><td>Tue Oct 27</td><td>Final checklist for GMU (Honors box checked) and JMU (both Honors essays entered, official transcript received)</td></tr>
+            <tr><td>Wed Oct 28</td><td>Virginia Tech is already submitted. Use the day to double check JMU and GMU</td></tr>
+            <tr><td>Thu Oct 29</td><td><strong>Submit JMU and GMU. Save the confirmations.</strong></td></tr>
+            <tr><td>Oct 30 to Nov 1</td><td>Cushion. Confirm JMU and GMU show the transcript as received</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="after">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 C28 4 34 10 34 18 C34 24 30 28 26 30 L26 36 L14 36 L14 30 C10 28 6 24 6 18 C6 10 12 4 20 4 Z" fill="#fbf6ea" stroke="#4a3320" stroke-width="2.4"/><circle cx="14" cy="18" r="4" fill="#4a3320"/><circle cx="26" cy="18" r="4" fill="#4a3320"/></svg>
+    <h2>After the Dig</h2>
+  </div>
+  <p class="sub">The work continues once the applications are in. Dates are the schools' own.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>When</th><th>What</th></tr></thead>
+      <tbody>
+        <tr><td>Within 72 hours of Oct 4</td><td>VT emails the Applicant Portal instructions. Check spam and mark admissions@vt.edu as a safe sender</td></tr>
+        <tr><td>When the portal opens</td><td>Complete the VT STARS record: all courses and grades for 9th to 11th grade, plus 12th grade courses in progress or planned</td></tr>
+        <tr><td>Weekly</td><td>Check the application email for anything VT needs</td></tr>
+        <tr><td>Done</td><td>2027-28 FAFSA completed</td></tr>
+        <tr><td>By Jan 8, 2027</td><td>VT Honors College scholarship application, if invited (essay of 500 words or fewer)</td></tr>
+        <tr><td>Jan 22, 2027</td><td>VT General Scholarship Application</td></tr>
+        <tr><td>Jan 2027</td><td>JMU Madison Scholarships Hub opportunities</td></tr>
+        <tr><td>Mar 1, 2027</td><td>FAFSA priority date for VT and GMU</td></tr>
+        <tr><td>May 1, 2027</td><td>Reply deadline</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer class="finish">
+  <div class="wrap">
+    <h2>Find the bones, then build the museum</h2>
+    <p>Xavier hopes to study paleontology and one day run a natural history museum. This page keeps the paperwork on schedule so the real work can get done.</p>
+    <p><small>Last updated October 4, 2026. Deadlines and fees come from each school's admissions page and the Common App. Always confirm on the official sites before relying on a date.</small></p>
+    <div class="footprints" aria-hidden="true" id="prints"></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function days(y,m,d){
+    var now=new Date(); var t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    var t=new Date(y,m-1,d);
+    return Math.round((t-t0)/86400000);
+  }
+  function set(id,n){
+    var el=document.getElementById(id);
+    if(!el) return;
+    el.textContent = n<0 ? "Done" : String(n);
+  }
+  set("d-target",days(2026,10,29));
+  set("d-deadline",days(2026,11,1));
+  var p=document.getElementById("prints");
+  if(p){
+    var s='<svg viewBox="0 0 40 50"><g fill="#d9a441"><ellipse cx="20" cy="36" rx="9" ry="11"/><ellipse cx="7" cy="17" rx="4.5" ry="9" transform="rotate(-18 7 17)"/><ellipse cx="20" cy="11" rx="4.5" ry="10"/><ellipse cx="33" cy="17" rx="4.5" ry="9" transform="rotate(18 33 17)"/></g></svg>';
+    p.innerHTML=s+s+s+s+s;
+  }
+})();
+</script>
+</body>
+</html>
