@@ -158,6 +158,28 @@ tr:last-child td{border-bottom:0}
 .mini th{background:var(--sand-2);color:var(--umber)}
 .mini td:first-child{white-space:nowrap;font-weight:700;color:var(--rust)}
 
+/* field skills */
+.skills{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}
+.skills .card{padding-bottom:20px}
+.skills .card p{margin:0 18px 12px}
+.big-rule{
+  margin:0 18px 14px;padding:12px 14px;border:2px dashed var(--clay);border-radius:10px;
+  font-weight:700;color:var(--umber);background:#fff;
+}
+.tools{list-style:none;margin:0;padding:0 18px}
+.tools li{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed var(--sand-2)}
+.tools li:last-child{border-bottom:0}
+.tools b{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;color:var(--rust);min-width:28px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:16px 18px 0}
+.btn{
+  display:inline-block;text-decoration:none;font-weight:700;font-size:.95rem;
+  padding:10px 16px;border-radius:10px;border:2px solid var(--umber);
+}
+.btn-main{background:var(--umber);color:var(--bone)}
+.btn-main:hover{background:var(--rust);border-color:var(--rust)}
+.btn-alt{background:transparent;color:var(--umber)}
+.btn-alt:hover{background:var(--sand-2)}
+
 /* closing */
 .finish{
   margin-top:56px;background:var(--soil);color:#eadcc0;padding:40px 0 32px;
@@ -172,6 +194,7 @@ tr:last-child td{border-bottom:0}
   .hero-grid{grid-template-columns:1fr}
   .hero svg.rex{max-width:420px;margin:0 auto}
   .layer{grid-template-columns:1fr}
+  .skills{grid-template-columns:1fr}
   .layer .era{padding:14px 20px}
   body{font-size:16px}
 }
@@ -230,6 +253,7 @@ tr:last-child td{border-bottom:0}
     <a href="#sites">Dig Sites</a>
     <a href="#lab">Prep Lab</a>
     <a href="#strata">Strata</a>
+    <a href="#skills">Field Skills</a>
     <a href="#after">After the Dig</a>
   </div>
 </nav>
@@ -395,6 +419,37 @@ tr:last-child td{border-bottom:0}
   </div>
 </section>
 
+<section id="skills">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="4" width="26" height="32" rx="3" fill="#fbf6ea" stroke="#4a3320" stroke-width="2.4"/><path d="M12 13 H28 M12 20 H28 M12 27 H22" stroke="#c98a4b" stroke-width="2.4" stroke-linecap="round"/><path d="M27 25 L33 31 L30 34 L24 28 Z" fill="#d9a441" stroke="#4a3320" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <h2>Field Skills: How to Study Math</h2>
+  </div>
+  <p class="sub">Grades still count while the applications are out. This is the study method for math, written for any math class, not just Calculus.</p>
+  <div class="skills">
+    <article class="card">
+      <div class="tag">Field notes</div>
+      <h3>Nobody taught me how to study math</h3>
+      <p>Dad got two Cs on his first two college Calculus exams. Then he went to a seminar on how to study for math, changed how he studied, and got two As on the next two. The guide puts those rules on one page.</p>
+      <div class="big-rule">Math is not something you read. You learn it by doing it, with a pencil, a little bit every day.</div>
+      <div class="btns">
+        <a class="btn btn-main" href="how-to-study-math.html">Read the blog post</a>
+        <a class="btn btn-alt" href="how-to-study-math.pdf" download>Print the one-pager (PDF)</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="tag">The core rules</div>
+      <ul class="tools">
+        <li><b>1</b><span>Sit down with it every day, 30 to 60 minutes.</span></li>
+        <li><b>2</b><span>Understand the idea first, then practice.</span></li>
+        <li><b>4</b><span>Pencil and paper. Write every step.</span></li>
+        <li><b>6</b><span>Keep a mistake log and redo those problems.</span></li>
+        <li><b>7</b><span>Quiz yourself. Do not just reread.</span></li>
+        <li><b>AI</b><span>Try it on paper first. Use the AI tutor to check, not to solve.</span></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
 <section id="after">
   <div class="sec-head">
     <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 C28 4 34 10 34 18 C34 24 30 28 26 30 L26 36 L14 36 L14 30 C10 28 6 24 6 18 C6 10 12 4 20 4 Z" fill="#fbf6ea" stroke="#4a3320" stroke-width="2.4"/><circle cx="14" cy="18" r="4" fill="#4a3320"/><circle cx="26" cy="18" r="4" fill="#4a3320"/></svg>
@@ -426,7 +481,7 @@ tr:last-child td{border-bottom:0}
   <div class="wrap">
     <h2>Find the bones, then build the museum</h2>
     <p>Xavier hopes to study paleontology and one day run a natural history museum. This page keeps the paperwork on schedule so the real work can get done.</p>
-    <p><small>Last updated October 15, 2026. Deadlines come from each school's admissions page and the Common App. Always confirm on the official sites before relying on a date.</small></p>
+    <p><small>Last updated October 21, 2026. Deadlines come from each school's admissions page and the Common App. Always confirm on the official sites before relying on a date.</small></p>
     <div class="footprints" aria-hidden="true" id="prints"></div>
   </div>
 </footer>

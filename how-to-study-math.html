@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nobody Taught Me How to Study Math</title>
+<meta name="description" content="Twelve rules for studying any math class, from a one-page guide I made for my son.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #fbfaf6;
+  --grid: #dfe7ee;
+  --grid-major: #c9d6e2;
+  --ink: #1d2733;
+  --muted: #55606c;
+  --pencil: #2f4a6b;
+  --red: #b8412e;
+  --card: #ffffff;
+  --line: #d7dde3;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.65;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
+article {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--red);
+  padding: 44px 48px 40px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 8px 24px rgba(29,39,51,.06);
+}
+.kicker {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--red); margin: 0 0 10px;
+}
+h1 { font-size: 42px; line-height: 1.15; margin: 0 0 12px; letter-spacing: -.01em; }
+.dek { font-size: 20px; color: var(--muted); margin: 0 0 28px; font-style: italic; }
+h2 {
+  font-size: 27px; margin: 48px 0 8px; line-height: 1.25;
+  display: flex; align-items: baseline; gap: 12px;
+}
+h2 .sym { font-family: "Caveat", cursive; color: var(--red); font-size: 34px; font-weight: 700; }
+p { margin: 0 0 18px; }
+.note {
+  font-family: "Caveat", cursive; font-size: 25px; line-height: 1.3;
+  color: var(--pencil);
+}
+
+/* grade chart */
+figure { margin: 28px 0 30px; }
+figure svg { width: 100%; height: auto; display: block; }
+figcaption { font-size: 15px; color: var(--muted); text-align: center; margin-top: 6px; }
+
+.big-idea {
+  margin: 30px 0; padding: 22px 26px;
+  border: 2px solid var(--ink);
+  font-size: 22px; font-weight: 600; line-height: 1.4; text-align: center;
+  position: relative;
+}
+.big-idea::before {
+  content: "Theorem."; position: absolute; top: -14px; left: 18px;
+  background: var(--card); padding: 0 8px;
+  font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 500;
+  letter-spacing: .06em; color: var(--red);
+}
+
+.group-label {
+  font-family: "JetBrains Mono", monospace; font-size: 13px;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+  margin: 30px 0 10px; padding-bottom: 6px; border-bottom: 1px dashed var(--line);
+}
+.rule { display: grid; grid-template-columns: 46px 1fr; gap: 14px; margin: 0 0 20px; }
+.n {
+  width: 42px; height: 42px; border: 2px solid var(--ink); border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 500;
+}
+.rule h3 { font-size: 20px; margin: 6px 0 4px; line-height: 1.3; }
+.rule p { margin: 0; }
+
+.ai {
+  margin: 26px 0; padding: 24px 26px 10px;
+  background: repeating-linear-gradient(0deg, transparent 0 31px, #e9eef3 31px 32px);
+  border: 1px solid var(--line); border-top: 4px solid var(--pencil);
+}
+.ai ul { margin: 0 0 14px; padding-left: 22px; }
+.ai li { margin-bottom: 8px; }
+
+.equation {
+  font-family: "JetBrains Mono", monospace; font-size: 17px;
+  background: #f4f6f8; border: 1px solid var(--line);
+  padding: 16px 18px; margin: 20px 0 14px; text-align: center; overflow-x: auto;
+  white-space: nowrap;
+}
+.equation b { color: var(--red); font-weight: 500; }
+table { width: 100%; border-collapse: collapse; margin: 0 0 22px; font-size: 17px; }
+td { padding: 10px 8px; border-top: 1px solid var(--line); vertical-align: top; }
+td:first-child { width: 86px; font-family: "JetBrains Mono", monospace; font-size: 15px; color: var(--red); white-space: nowrap; }
+
+.check { list-style: none; padding: 0; margin: 0 0 22px; }
+.check li { padding: 8px 0 8px 34px; position: relative; border-top: 1px solid var(--line); }
+.check li::before {
+  content: ""; position: absolute; left: 4px; top: 13px;
+  width: 16px; height: 16px; border: 2px solid var(--ink); border-radius: 2px;
+}
+
+.qed {
+  margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.qed .box { width: 14px; height: 14px; background: var(--ink); display: inline-block; }
+.btn {
+  display: inline-block; text-decoration: none; color: var(--card); background: var(--ink);
+  padding: 10px 18px; font-family: "JetBrains Mono", monospace; font-size: 14px;
+  letter-spacing: .04em; border-radius: 3px;
+}
+.btn:hover { background: var(--pencil); }
+
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .wrap { padding: 20px 16px 40px; }
+  article { padding: 28px 20px 26px; }
+  h1 { font-size: 32px; }
+  .dek { font-size: 18px; }
+  h2 { font-size: 23px; margin-top: 38px; }
+  .big-idea { font-size: 19px; padding: 20px 16px; }
+  .rule { grid-template-columns: 38px 1fr; gap: 10px; }
+  .n { width: 36px; height: 36px; font-size: 15px; }
+  .rule h3 { font-size: 18px; margin-top: 4px; }
+  .equation { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<article>
+
+<p class="kicker"><a href="index.html" style="color:inherit">&larr; Xavier's Dig Site</a> &middot; Study skills</p>
+<h1>Nobody Taught Me How to Study Math</h1>
+<p class="dek">A one-page guide I made for my son, and the twelve rules behind it.</p>
+
+<p>My son is having a hard time with Calculus right now, and it brought back a memory from my first year of college.</p>
+
+<p>I got a C on my first Calculus exam. Then I got another C on the second one. Then I went to a seminar on how to study for math. It sounds obvious now, but nobody had ever taught me how to study for math. I just assumed you studied it like any other subject.</p>
+
+<p>After that seminar I changed how I studied. I got an A on the next exam, and an A on the one after that.</p>
+
+<figure aria-label="Exam grades: C, C, then A, A after the study seminar">
+<svg viewBox="0 0 640 230" role="img" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace">
+  <title>My four Calculus exam grades</title>
+  <g stroke="#c9d6e2" stroke-width="1">
+    <line x1="70" y1="30" x2="610" y2="30"/><line x1="70" y1="80" x2="610" y2="80"/>
+    <line x1="70" y1="130" x2="610" y2="130"/><line x1="70" y1="180" x2="610" y2="180"/>
+  </g>
+  <line x1="70" y1="20" x2="70" y2="190" stroke="#1d2733" stroke-width="1.5"/>
+  <line x1="70" y1="190" x2="615" y2="190" stroke="#1d2733" stroke-width="1.5"/>
+  <g font-size="14" fill="#55606c" text-anchor="end">
+    <text x="58" y="35">A</text><text x="58" y="85">B</text><text x="58" y="135">C</text><text x="58" y="185">D</text>
+  </g>
+  <line x1="340" y1="22" x2="340" y2="190" stroke="#b8412e" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <text x="350" y="174" font-family="Caveat, cursive" font-size="24" fill="#b8412e">the seminar</text>
+  <polyline points="135,130 270,130 410,30 545,30" fill="none" stroke="#2f4a6b" stroke-width="3" stroke-linejoin="round"/>
+  <g fill="#ffffff" stroke="#2f4a6b" stroke-width="3">
+    <circle cx="135" cy="130" r="7"/><circle cx="270" cy="130" r="7"/>
+    <circle cx="410" cy="30" r="7"/><circle cx="545" cy="30" r="7"/>
+  </g>
+  <g font-size="13" fill="#55606c" text-anchor="middle">
+    <text x="135" y="212">Exam 1</text><text x="270" y="212">Exam 2</text>
+    <text x="410" y="212">Exam 3</text><text x="545" y="212">Exam 4</text>
+  </g>
+</svg>
+<figcaption>Same class, same student. What changed was how I studied.</figcaption>
+</figure>
+
+<p>So I put what I learned on one page for my son, along with what we know now about how people learn. Here it is, written for any math class: Algebra, Geometry, Calculus, Statistics.</p>
+
+<div class="big-idea">Math is not something you read. You learn it by doing it, with a pencil, a little bit every day.</div>
+
+<h2><span class="sym">&Sigma;</span> The twelve rules</h2>
+
+<div class="group-label">Before you practice</div>
+
+<div class="rule"><div class="n">1</div><div>
+<h3>Sit down with it every day.</h3>
+<p>30 to 60 minutes every day beats 4 hours the night before a test. Same time, same place, phone in another room. This is the first thing the seminar taught me.</p>
+</div></div>
+
+<div class="rule"><div class="n">2</div><div>
+<h3>Understand the idea first, then practice.</h3>
+<p>Before starting homework, go back over today's lesson. What is the new idea? What problem does it solve? Write the key rule and one example in your own words. Practice without understanding turns into memorizing steps, and memorized steps fall apart when a test problem looks a little different.</p>
+</div></div>
+
+<div class="rule"><div class="n">3</div><div>
+<h3>Study an example, then cover it up.</h3>
+<p>Read a worked example step by step. Then cover the solution and do the same problem yourself on a blank page. If you get stuck, peek at one step only, then cover it again.</p>
+</div></div>
+
+<div class="group-label">While you practice</div>
+
+<div class="rule"><div class="n">4</div><div>
+<h3>Pencil and paper. Write every step.</h3>
+<p>No steps in your head. Neat, step-by-step work means fewer mistakes, and when you do make one, you can find exactly where it happened.</p>
+</div></div>
+
+<div class="rule"><div class="n">5</div><div>
+<h3>Struggle before you ask (the 10-minute rule).</h3>
+<p>When you are stuck, give it 10 honest minutes. Check your notes, find a similar example, and write down what you know and what you need. That struggle is where the learning happens. After 10 minutes, ask for help.</p>
+</div></div>
+
+<div class="rule"><div class="n">6</div><div>
+<h3>Your mistakes are your study guide.</h3>
+<p>Keep a mistake log: the problem, what went wrong, and the right idea. Before every test, redo those problems from scratch. The mistake log tells you exactly what to study.</p>
+</div></div>
+
+<div class="group-label">Making it stick</div>
+
+<div class="rule"><div class="n">7</div><div>
+<h3>Quiz yourself. Do not just reread.</h3>
+<p>Rereading notes feels productive, but you mostly end up recognizing the material, not knowing it. Close the book and do problems on your own, under a time limit, like it is the real test.</p>
+</div></div>
+
+<div class="rule"><div class="n">8</div><div>
+<h3>Mix up your practice problems.</h3>
+<p>Homework usually gives you 20 problems of the same kind in a row, so you always know which method to use. A test mixes everything together, and part of the challenge is figuring out which method each problem needs. Once you know a few topics, mix them on purpose: one from Chapter 2, then Chapter 4, then Chapter 3.</p>
+</div></div>
+
+<div class="rule"><div class="n">9</div><div>
+<h3>Review old chapters every week.</h3>
+<p>Math builds on itself. What you learn in September shows up again in December. Every weekend, redo 3 to 5 problems from older chapters so you don't forget them.</p>
+</div></div>
+
+<div class="rule"><div class="n">10</div><div>
+<h3>Explain it out loud.</h3>
+<p>If you can teach a problem to a friend, a parent, or an empty chair, you know it. If you can't, now you know what to study next.</p>
+</div></div>
+
+<div class="group-label">Habits</div>
+
+<div class="rule"><div class="n">11</div><div>
+<h3>Ask early.</h3>
+<p>Go to the teacher the same week you get confused, not the week of the test. Bring the work you tried so they can see where it broke down.</p>
+</div></div>
+
+<div class="rule"><div class="n">12</div><div>
+<h3>Sleep before a test.</h3>
+<p>Your brain locks in what you practiced while you sleep. An all-nighter costs more than it gives.</p>
+</div></div>
+
+<h2><span class="sym">&ne;</span> What about the AI tutor?</h2>
+
+<p>This is the part that did not exist when I was in college. My son has an AI tutor, and I wondered if he should skip it and just use pencil and paper. I don't think it has to go away, but it has to come last, not first.</p>
+
+<div class="ai">
+<p>Getting the answer from AI feels like learning, but your brain only learns what it works out itself. On test day it is just you and a pencil, so practice that way.</p>
+<ul>
+<li><strong>Always try the problem on paper first.</strong> No AI until you have an attempt written down.</li>
+<li><strong>Use it to check, not to solve.</strong> Check a final answer, or ask about one specific step: "Why does step 3 work?"</li>
+<li><strong>Ask for a new practice problem</strong> like the one you missed, instead of asking for the solution.</li>
+<li><strong>The real test:</strong> can you redo the problem tomorrow on a blank page with no help? If not, you have not learned it yet.</li>
+</ul>
+</div>
+
+<h2><span class="sym">=</span> A 45-minute daily session</h2>
+
+<p>Rules are easier to follow with a routine. Here is the one on the guide:</p>
+
+<div class="equation"><b>5</b> review + <b>10</b> understand + <b>25</b> practice + <b>5</b> wrap-up = <b>45</b> min</div>
+
+<table>
+<tr><td>5 min</td><td>Redo one or two problems from yesterday's mistakes.</td></tr>
+<tr><td>10 min</td><td>Go over today's lesson. Write the main idea in your own words.</td></tr>
+<tr><td>25 min</td><td>Practice problems on paper, every step written out.</td></tr>
+<tr><td>5 min</td><td>Update the mistake log. Write down questions for the teacher.</td></tr>
+</table>
+
+<h2><span class="sym">&there4;</span> Before every test</h2>
+
+<ul class="check">
+<li>Started reviewing at least 5 days before</li>
+<li>Redid every problem in the mistake log</li>
+<li>Took a timed practice test with no notes</li>
+<li>Asked the teacher about anything still unclear</li>
+<li>Got a full night of sleep</li>
+</ul>
+
+<p>Being "bad at math" is usually just not knowing how to study it yet. That was true for me, and how you study is something you can learn.</p>
+
+<p class="note">If I had known this before the first exam, I would have saved myself two Cs.</p>
+
+<div class="qed">
+  <a class="btn" href="how-to-study-math.pdf" download>Download the one-page guide (PDF)</a>
+  <span class="box" title="Q.E.D." aria-label="End of post"></span>
+</div>
+
+</article>
+</div>
+</body>
+</html>
