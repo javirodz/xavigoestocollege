@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Difference of Cubes</title>
+<style>
+:root{
+  --bg:#f7f6f2; --card:#ffffff; --ink:#1d232b; --muted:#5b6672; --rule:#e2e0d8;
+  --l1:#2463c9; --l2:#d0661b; --step:#1f8a5b; --pt:#b4232c; --code:#f0eee7; --hl:#fff4d6;
+  --top:#dfe8f7; --side1:#b9cdee; --side2:#8fb0e3; --notch:#f6c9a3; --edge:#2b3440;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14171c; --card:#1c2027; --ink:#e7e9ec; --muted:#9aa4af; --rule:#2d333c;
+    --l1:#6ea0ff; --l2:#f0954f; --step:#4cc690; --pt:#ff6b72; --code:#252a32; --hl:#3a331f;
+    --top:#3a4a66; --side1:#2e3d57; --side2:#243149; --notch:#8a5530; --edge:#c9d2dc;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14171c; --card:#1c2027; --ink:#e7e9ec; --muted:#9aa4af; --rule:#2d333c;
+  --l1:#6ea0ff; --l2:#f0954f; --step:#4cc690; --pt:#ff6b72; --code:#252a32; --hl:#3a331f;
+  --top:#3a4a66; --side1:#2e3d57; --side2:#243149; --notch:#8a5530; --edge:#c9d2dc;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:880px;margin:0 auto;padding:24px 16px 64px}
+.back{display:inline-block;margin-bottom:6px;color:var(--l1);text-decoration:none;font-size:.9rem}
+header h1{font-size:2rem;line-height:1.2;margin:8px 0 4px}
+header p{color:var(--muted);margin:0 0 16px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+nav a{color:var(--ink);text-decoration:none;border:1px solid var(--rule);background:var(--card);
+  padding:6px 12px;border-radius:999px;font-size:.9rem}
+nav a:hover{border-color:var(--l1)}
+section{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:20px 20px 8px;margin:20px 0}
+h2{font-size:1.4rem;margin:0 0 8px}
+h3{font-size:1.1rem;margin:20px 0 6px}
+p,li{max-width:70ch}
+.formula{font-size:1.5rem;font-weight:700;text-align:center;background:var(--code);
+  border-radius:10px;padding:14px;margin:12px 0;letter-spacing:.02em;overflow-x:auto}
+.formula small{display:block;font-size:.9rem;font-weight:400;color:var(--muted);letter-spacing:0}
+.s{color:var(--l1)} .o{color:var(--l2)} .ap{color:var(--step)}
+.m{font-family:ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;background:var(--code);padding:1px 5px;border-radius:5px;font-size:.95em}
+ol.steps{padding-left:0;list-style:none;counter-reset:s}
+ol.steps>li{counter-increment:s;position:relative;padding-left:40px;margin:10px 0}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;
+  background:var(--l1);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.ex{display:grid;grid-template-columns:1fr;gap:16px;border-top:1px solid var(--rule);padding:14px 0}
+@media (min-width:720px){.ex{grid-template-columns:1fr 1fr;align-items:start}}
+.ex h3{margin-top:0}
+.ex ol{margin:0;padding-left:22px}
+.ok{color:var(--step);font-weight:700}
+table{border-collapse:collapse;width:100%;margin:8px 0 12px;font-size:.95rem}
+th,td{border-bottom:1px solid var(--rule);padding:6px 8px;text-align:left}
+th{color:var(--muted);font-weight:600}
+.tablewrap{overflow-x:auto}
+table.area td,table.area th{text-align:center;border:1px solid var(--rule)}
+table.area th{background:var(--code);color:var(--ink)}
+table.area td.keep{background:var(--hl);font-weight:700}
+table.area td.c1{color:var(--l1)} table.area td.c2{color:var(--l2)}
+table.soap td:first-child{font-weight:800;font-size:1.1rem}
+.tip{background:var(--hl);border-radius:10px;padding:10px 14px;margin:12px 0}
+.tip strong{display:block;margin-bottom:2px}
+ul.tight li{margin:4px 0}
+.fig{display:flex;justify-content:center}
+.fig svg{width:100%;max-width:340px;height:auto;overflow:visible}
+.cap{font-size:.85rem;color:var(--muted);text-align:center;margin:4px 0 0}
+.cubes td,.cubes th{text-align:center}
+/* builder */
+.builder{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:720px){.builder{grid-template-columns:1fr 1.2fr;align-items:start}}
+.ctrl label{display:flex;justify-content:space-between;font-weight:600;margin-top:10px}
+.ctrl input[type=range]{width:100%;accent-color:var(--l1)}
+.seg{display:flex;gap:6px;margin-top:12px}
+.seg button{flex:1;border:1px solid var(--rule);background:var(--card);color:var(--ink);padding:8px;border-radius:8px;font:inherit;font-weight:700;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--l1);color:#fff;border-color:var(--l1)}
+.eq{font-size:1.3rem;font-weight:700;background:var(--code);border-radius:10px;padding:10px 14px;margin:8px 0;text-align:center}
+#workOut ol{padding-left:22px;margin:6px 0}
+.theme{float:right;border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit;font-size:.85rem}
+@media print{nav,.theme,.back,#build{display:none} section{break-inside:avoid;border:none}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <button class="theme" id="themeBtn" type="button">Light / Dark</button>
+  <a class="back" href="index.html">‹ Back to Xavier's Dig Site</a>
+  <h1>Difference of Cubes</h1>
+  <p>How to factor a³ − b³, why the formula works, and how to use it to solve equations.</p>
+  <nav>
+    <a href="#formula">1. The formula</a>
+    <a href="#steps">2. Step by step</a>
+    <a href="#examples">3. Examples</a>
+    <a href="#why">4. Why it works</a>
+    <a href="#solve">5. Solving equations</a>
+    <a href="#sum">6. Sum of cubes</a>
+    <a href="#build">7. Try it yourself</a>
+  </nav>
+</header>
+
+<section id="formula">
+  <h2>1. The formula</h2>
+  <div class="formula">a³ <span class="s">−</span> b³ = (a <span class="s">−</span> b)(a² <span class="o">+</span> ab <span class="ap">+</span> b²)</div>
+  <p>To remember the signs, use <strong>SOAP</strong>:</p>
+  <div class="tablewrap"><table class="soap">
+    <thead><tr><th>Letter</th><th>Meaning</th><th>In the formula</th></tr></thead>
+    <tbody>
+      <tr><td class="s">S</td><td>Same sign</td><td>(a <span class="s">−</span> b) uses the same sign as the original</td></tr>
+      <tr><td class="o">O</td><td>Opposite sign</td><td>a² <span class="o">+</span> ab is the opposite of the original</td></tr>
+      <tr><td class="ap">AP</td><td>Always positive</td><td><span class="ap">+</span> b² is always plus</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="steps">
+  <h2>2. Step by step</h2>
+  <ol class="steps">
+    <li><strong>Pull out a GCF first</strong> if the terms share one.</li>
+    <li><strong>Check that both terms are perfect cubes</strong> and that there's a minus between them.</li>
+    <li><strong>Find a and b</strong> by taking the cube root of each term.</li>
+    <li><strong>Write the binomial (a − b).</strong></li>
+    <li><strong>Write the trinomial (a² + ab + b²):</strong> square a, multiply a times b, square b.</li>
+    <li><strong>Check</strong> by multiplying the factors back out.</li>
+    <li><strong>To solve an equation</strong> (= 0), set each factor equal to 0.</li>
+  </ol>
+  <h3>Perfect cubes worth memorizing</h3>
+  <div class="tablewrap"><table class="cubes">
+    <thead><tr><th>n</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>10</th></tr></thead>
+    <tbody><tr><th>n³</th><td>1</td><td>8</td><td>27</td><td>64</td><td>125</td><td>216</td><td>343</td><td>1000</td></tr></tbody>
+  </table></div>
+  <p>For variables, the exponent has to be a multiple of 3: x³ = (x)³, x⁶ = (x²)³, x⁹ = (x³)³.</p>
+</section>
+
+<section id="examples">
+  <h2>3. Examples</h2>
+
+  <div class="ex">
+    <div>
+      <h3>Example 1: x³ − 8</h3>
+      <ol>
+        <li>No GCF.</li>
+        <li>x³ is a cube, and 8 = 2³.</li>
+        <li>a = x, b = 2</li>
+        <li>Binomial: (x − 2)</li>
+        <li>Trinomial: x² + (x)(2) + 2² = x² + 2x + 4</li>
+        <li><strong>x³ − 8 = (x − 2)(x² + 2x + 4)</strong></li>
+      </ol>
+    </div>
+    <div>
+      <p><strong>Check by multiplying.</strong> Each box is one term times one term.</p>
+      <div class="tablewrap"><table class="area">
+        <thead><tr><th>×</th><th>x²</th><th>+2x</th><th>+4</th></tr></thead>
+        <tbody>
+          <tr><th>x</th><td class="keep">x³</td><td class="c1">2x²</td><td class="c2">4x</td></tr>
+          <tr><th>−2</th><td class="c1">−2x²</td><td class="c2">−4x</td><td class="keep">−8</td></tr>
+        </tbody>
+      </table></div>
+      <p>Same colors cancel: 2x² − 2x² = 0 and 4x − 4x = 0. Only <strong>x³ − 8</strong> is left <span class="ok">✓</span></p>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div>
+      <h3>Example 2: 27x³ − 64</h3>
+      <ol>
+        <li>No GCF.</li>
+        <li>27x³ = (3x)³ and 64 = 4³</li>
+        <li>a = 3x, b = 4</li>
+        <li>Binomial: (3x − 4)</li>
+        <li>Trinomial: (3x)² + (3x)(4) + 4² = 9x² + 12x + 16</li>
+        <li><strong>27x³ − 64 = (3x − 4)(9x² + 12x + 16)</strong></li>
+      </ol>
+    </div>
+    <div class="tip" style="margin:0"><strong>Common mistake</strong>Writing 3x² instead of (3x)² = 9x². Square the whole a, coefficient included.</div>
+  </div>
+
+  <div class="ex">
+    <div>
+      <h3>Example 3: 2x³ − 54 (GCF first)</h3>
+      <ol>
+        <li>GCF is 2: 2(x³ − 27)</li>
+        <li>x³ and 27 = 3³ are both cubes.</li>
+        <li>a = x, b = 3</li>
+        <li>x³ − 27 = (x − 3)(x² + 3x + 9)</li>
+        <li><strong>2x³ − 54 = 2(x − 3)(x² + 3x + 9)</strong></li>
+      </ol>
+    </div>
+    <div class="tip" style="margin:0"><strong>Why the GCF matters</strong>54 isn't a perfect cube, so without pulling out the 2 first you'd get stuck.</div>
+  </div>
+
+  <div class="ex">
+    <div>
+      <h3>Example 4: 8y³ − 125z³ (two variables)</h3>
+      <ol>
+        <li>8y³ = (2y)³ and 125z³ = (5z)³</li>
+        <li>a = 2y, b = 5z</li>
+        <li>Trinomial: (2y)² + (2y)(5z) + (5z)² = 4y² + 10yz + 25z²</li>
+        <li><strong>(2y − 5z)(4y² + 10yz + 25z²)</strong></li>
+      </ol>
+    </div>
+    <div class="tip" style="margin:0"><strong>Not a difference of cubes?</strong>x³ − 10 can't use this formula because 10 isn't a perfect cube. x² − 8 can't either, because x² isn't a cube.</div>
+  </div>
+</section>
+
+<section id="why">
+  <h2>4. Why it works (picture)</h2>
+  <div class="ex" style="border-top:none">
+    <div>
+      <p>Start with a big cube with side a. Its volume is a³. Cut out a small cube with side b from one corner. What's left has volume <strong>a³ − b³</strong>.</p>
+      <p>That leftover solid can be sliced into three boxes, each with thickness (a − b):</p>
+      <ul class="tight">
+        <li>a box of a × a × (a − b) = a²(a − b)</li>
+        <li>a box of a × b × (a − b) = ab(a − b)</li>
+        <li>a box of b × b × (a − b) = b²(a − b)</li>
+      </ul>
+      <p>Add them and factor out (a − b):</p>
+      <p class="m" style="display:inline-block">a³ − b³ = (a − b)(a² + ab + b²)</p>
+    </div>
+    <div><div class="fig" id="cubeFig"></div><p class="cap">A cube of side a with a corner cube of side b removed (the orange hollow is the missing b³)</p></div>
+  </div>
+</section>
+
+<section id="solve">
+  <h2>5. Solving an equation: x³ − 8 = 0</h2>
+  <ol class="steps">
+    <li><strong>Factor:</strong> (x − 2)(x² + 2x + 4) = 0</li>
+    <li><strong>Set the binomial to 0:</strong> x − 2 = 0, so <strong>x = 2</strong></li>
+    <li><strong>Set the trinomial to 0</strong> and use the quadratic formula:<br>
+      x = (−2 ± √(4 − 16)) / 2 = (−2 ± √−12) / 2 = <strong>−1 ± i√3</strong></li>
+    <li><strong>Answer:</strong> the real solution is <strong>x = 2</strong>. The other two are complex.</li>
+  </ol>
+  <div class="tip"><strong>Good to know</strong>The trinomial from a difference of cubes never factors further over the real numbers (when a and b have no common factor). Its discriminant is always negative, so don't spend time trying to factor it.</div>
+</section>
+
+<section id="sum">
+  <h2>6. Related: sum of cubes</h2>
+  <p>SOAP works the same way with a plus sign:</p>
+  <div class="formula">a³ <span class="s">+</span> b³ = (a <span class="s">+</span> b)(a² <span class="o">−</span> ab <span class="ap">+</span> b²)</div>
+  <p><strong>Example:</strong> x³ + 125 = (x + 5)(x² − 5x + 25)</p>
+</section>
+
+<section id="build">
+  <h2>7. Try it yourself</h2>
+  <p>Pick the parts of the expression and see each factoring step.</p>
+  <div class="builder">
+    <div class="ctrl">
+      <label for="pIn"><span>Coefficient inside a = (p·x)</span><span id="pVal"></span></label>
+      <input id="pIn" type="range" min="1" max="5" step="1" value="1">
+      <label for="qIn"><span>b</span><span id="qVal"></span></label>
+      <input id="qIn" type="range" min="1" max="7" step="1" value="2">
+      <div class="seg" role="group" aria-label="Difference or sum">
+        <button type="button" id="opMinus" aria-pressed="true">Difference (−)</button>
+        <button type="button" id="opPlus" aria-pressed="false">Sum (+)</button>
+      </div>
+      <div class="eq" id="exprOut"></div>
+    </div>
+    <div id="workOut"></div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('lf-theme'); if(t) root.setAttribute('data-theme',t);}catch(e){}
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    if(!cur){cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+    var next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('lf-theme',next);}catch(e){}
+  });
+
+  // Isometric cube with a corner removed
+  (function(){
+    var A=5, B=2, s=26, cx=170, cy=40;
+    var c30=Math.cos(Math.PI/6), s30=0.5;
+    function P(x,y,z){return [cx+(x-y)*c30*s, cy+(x+y)*s30*s+(A-z)*s];}
+    function poly(pts,fill){return '<polygon points="'+pts.map(function(p){return p.join(',');}).join(' ')+'" fill="var(--'+fill+')" stroke="var(--edge)" stroke-width="1.4" stroke-linejoin="round"/>';}
+    var k=A-B;
+    var Lsh=[[0,0],[A,0],[A,k],[k,k],[k,A],[0,A]];
+    var top=Lsh.map(function(q){return P(q[0],q[1],A);});
+    var fx=Lsh.map(function(q){return P(A,q[0],q[1]);});
+    var fy=Lsh.map(function(q){return P(q[0],A,q[1]);});
+    var sq=[[k,k],[A,k],[A,A],[k,A]];
+    var floor=sq.map(function(q){return P(q[0],q[1],k);});
+    var inX=sq.map(function(q){return P(k,q[0],q[1]);});
+    var inY=sq.map(function(q){return P(q[0],k,q[1]);});
+    var svg='';
+    svg+=poly(top,'top')+poly(fx,'side1')+poly(fy,'side2');
+    svg+=poly(floor,'notch')+poly(inX,'notch')+poly(inY,'notch');
+    function lbl(p,t,dx,dy,col){return '<text x="'+(p[0]+dx)+'" y="'+(p[1]+dy)+'" font-size="15" font-weight="700" fill="var(--'+col+')" text-anchor="middle">'+t+'</text>';}
+    var m1=P(A/2,0,0), m2=P(A,A/2,0), m3=P(0,A,A/2);
+    var e1=P(A,0,A/2);
+    svg+=lbl(e1,'a',14,4,'ink');
+    var a2=P(A/2,A,0); svg+=lbl(a2,'a',-6,22,'ink');
+    var a3=P(A,A/2,0); svg+=lbl(a3,'a',8,22,'ink');
+    var b1=P(A,A-B/2,A); svg+=lbl(b1,'b',14,0,'l2');
+    var b2=P(A,A,k+B/2); svg+=lbl(b2,'b',12,4,'l2');
+    document.getElementById('cubeFig').innerHTML='<svg viewBox="0 0 340 330" role="img" aria-label="Cube of side a with a smaller cube of side b removed from one corner">'+svg+'</svg>';
+  })();
+
+  // Builder
+  var op='-';
+  var sup={2:'²',3:'³'};
+  function co(n,v){return n===1?v:n+v;}
+  function upd(){
+    var p=+document.getElementById('pIn').value, q=+document.getElementById('qIn').value;
+    document.getElementById('pVal').textContent=p; document.getElementById('qVal').textContent=q;
+    var aS=co(p,'x'), sgn=op==='-'?'−':'+', mid=op==='-'?'+':'−';
+    var expr=co(p*p*p,'x³')+' '+sgn+' '+(q*q*q);
+    document.getElementById('exprOut').textContent=expr;
+    var aSq=co(p*p,'x²'), ab=co(p*q,'x'), bSq=q*q;
+    var aParen=p===1?'x':'('+aS+')';
+    var name=op==='-'?'difference':'sum';
+    var w='<h3 style="margin-top:0">Factor '+expr+'</h3><ol>'+
+      '<li>Both terms are perfect cubes: '+co(p*p*p,'x³')+' = '+aParen+'³ and '+(q*q*q)+' = '+q+'³</li>'+
+      '<li>a = '+aS+', b = '+q+'</li>'+
+      '<li>Binomial (same sign): ('+aS+' '+sgn+' '+q+')</li>'+
+      '<li>Trinomial (opposite, then always plus): '+aParen+'² '+mid+' '+aParen+'('+q+') + '+q+'² = '+aSq+' '+mid+' '+ab+' + '+bSq+'</li>'+
+      '<li><strong>'+expr+' = ('+aS+' '+sgn+' '+q+')('+aSq+' '+mid+' '+ab+' + '+bSq+')</strong></li></ol>';
+    var g=gcd(p,q);
+    if(g>1) w+='<div class="tip"><strong>Heads up</strong>'+p+' and '+q+' share a factor of '+g+', so both terms share a GCF of '+(g*g*g)+'. Pulling it out first gives a simpler answer. The factoring above is still correct.</div>';
+    document.getElementById('workOut').innerHTML=w;
+  }
+  function gcd(a,b){return b?gcd(b,a%b):a;}
+  var mB=document.getElementById('opMinus'), pB=document.getElementById('opPlus');
+  mB.addEventListener('click',function(){op='-';mB.setAttribute('aria-pressed','true');pB.setAttribute('aria-pressed','false');upd();});
+  pB.addEventListener('click',function(){op='+';pB.setAttribute('aria-pressed','true');mB.setAttribute('aria-pressed','false');upd();});
+  document.getElementById('pIn').addEventListener('input',upd);
+  document.getElementById('qIn').addEventListener('input',upd);
+  upd();
+})();
+</script>
+</body>
+</html>
