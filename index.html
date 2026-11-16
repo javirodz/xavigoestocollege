@@ -189,6 +189,66 @@ tr:last-child td{border-bottom:0}
 .finish p{max-width:700px;margin:0 0 10px}
 .finish small{color:#b9a98d}
 
+/* gem hunt (scholarships) */
+.gem-hud{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;
+}
+.hud{
+  background:var(--soil);color:#eadcc0;border-radius:14px;padding:14px 16px;
+  display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--gold);
+}
+.hud svg{width:42px;height:42px;flex:none}
+.hud b{display:block;font-family:"Alfa Slab One",Georgia,serif;font-weight:400;font-size:1.8rem;line-height:1;color:var(--gold)}
+.hud span{font-size:.85rem}
+.vein{
+  height:18px;border-radius:999px;overflow:hidden;display:flex;margin:0 0 8px;
+  background:repeating-linear-gradient(135deg,#8f5a2a 0 10px,#7a4a22 10px 20px);
+  border:2px solid var(--umber);
+}
+.vein i{display:block;height:100%}
+.vein .v-found{background:linear-gradient(90deg,#4f6b3a,#7fa35c)}
+.vein .v-dig{background:repeating-linear-gradient(135deg,#d9a441 0 8px,#e8be6a 8px 16px);animation:shimmer 1.6s linear infinite;background-size:200% 100%}
+@keyframes shimmer{to{background-position:-32px 0}}
+.vein-key{display:flex;flex-wrap:wrap;gap:16px;font-size:.85rem;color:var(--muted);margin-bottom:22px}
+.vein-key em{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.gems{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gem{
+  background:var(--bone);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;
+  position:relative;box-shadow:0 2px 0 var(--line);transition:transform .15s ease, box-shadow .15s ease;
+}
+.gem:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 6px 0 var(--line)}
+.gem .gtop{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.gem .gtop svg{width:34px;height:34px;flex:none}
+.gem h3{font-size:1.05rem;color:var(--umber);line-height:1.2}
+.gem .who{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--muted)}
+.gem .prize{font-weight:700;color:var(--rust);margin:6px 0 4px;font-size:.95rem}
+.gem p{margin:0 0 10px;font-size:.92rem}
+.gem .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.gem .due{font-size:.85rem;font-weight:700}
+.gem .count{font-family:"Alfa Slab One",Georgia,serif;font-size:.85rem;color:var(--fern)}
+.gem.found .gtop,.gem.digging .gtop{padding-right:64px}
+.gem.found{background:linear-gradient(180deg,#eef4e3,var(--bone))}
+.gem.found::after{
+  content:"FOUND";position:absolute;top:12px;right:-6px;background:var(--fern);color:#fff;
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;padding:4px 10px;border-radius:4px 0 0 4px;
+}
+.gem.digging{border:2px solid var(--gold)}
+.gem.digging::after{
+  content:"DIGGING";position:absolute;top:12px;right:-6px;background:var(--gold);color:var(--soil);
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;padding:4px 10px;border-radius:4px 0 0 4px;
+}
+.gem.soon{border:2px dashed var(--rust)}
+.b-dig{background:#f6e2b5;color:#7a4e0c}
+
+@media (max-width:860px){
+  .gems{grid-template-columns:1fr 1fr}
+  .gem-hud{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .gems{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.vein .v-dig{animation:none}.gem:hover{transform:none}}
+
 @media (max-width:860px){
   .cards{grid-template-columns:1fr}
   .hero-grid{grid-template-columns:1fr}
@@ -252,6 +312,7 @@ tr:last-child td{border-bottom:0}
   <div class="wrap">
     <a href="#sites">Dig Sites</a>
     <a href="#lab">Prep Lab</a>
+    <a href="#gems">Gem Hunt</a>
     <a href="#strata">Strata</a>
     <a href="#skills">Field Skills</a>
     <a href="#guides">Field Guides</a>
@@ -331,6 +392,132 @@ tr:last-child td{border-bottom:0}
       </tbody>
     </table>
   </div>
+</section>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="g-found" viewBox="0 0 40 40"><path d="M8 14 L14 6 H26 L32 14 L20 36 Z" fill="#5f8a45" stroke="#2f4a20" stroke-width="2" stroke-linejoin="round"/><path d="M8 14 H32 M14 6 L17 14 L20 36 L23 14 L26 6" fill="none" stroke="#2f4a20" stroke-width="1.4" stroke-linejoin="round"/><path d="M15 9 L17 12" stroke="#d9f0c4" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="g-dig" viewBox="0 0 40 40"><path d="M20 4 L33 14 L28 34 H12 L7 14 Z" fill="#e3a93a" stroke="#7a4e0c" stroke-width="2" stroke-linejoin="round"/><path d="M7 14 L20 20 L33 14 M20 20 V34 M12 34 L20 20 L28 34" fill="none" stroke="#7a4e0c" stroke-width="1.3"/><circle cx="15" cy="12" r="2" fill="#fff3d6"/></symbol>
+  <symbol id="g-rock" viewBox="0 0 40 40"><path d="M5 26 C4 16 12 7 21 7 C30 7 36 14 35 23 C34 32 27 35 19 34 C11 34 6 32 5 26 Z" fill="#8a6a4c" stroke="#4a3320" stroke-width="2"/><path d="M14 20 L19 15 L25 19 L22 26 L15 26 Z" fill="#b48ad6" stroke="#5b3a7a" stroke-width="1.4" stroke-linejoin="round"/><circle cx="11" cy="15" r="1.4" fill="#4a3320"/><circle cx="29" cy="28" r="1.6" fill="#4a3320"/></symbol>
+</svg>
+
+<section id="gems">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><use href="#g-dig"/></svg>
+    <h2>The Gem Hunt: Scholarships</h2>
+  </div>
+  <p class="sub">Every scholarship is a gem buried somewhere in the dig. Green ones are found, gold ones are being dug out right now, and the rocks still have something shiny inside. Sorted by deadline. Dates marked "verify" still need checking on the official site.</p>
+
+  <div class="gem-hud">
+    <div class="hud"><svg aria-hidden="true"><use href="#g-found"/></svg><div><b id="n-found">0</b><span>gems found (applied or automatic)</span></div></div>
+    <div class="hud"><svg aria-hidden="true"><use href="#g-dig"/></svg><div><b id="n-dig">0</b><span>being dug out now</span></div></div>
+    <div class="hud"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><b id="n-next">-</b><span id="n-next-label">days to the next deadline</span></div></div>
+  </div>
+  <div class="vein" id="vein" role="img" aria-label="Scholarship progress"></div>
+  <div class="vein-key"><span><em style="background:#5f8a45"></em>Found</span><span><em style="background:#d9a441"></em>Digging</span><span><em style="background:#8f5a2a"></em>Still in the rock</span></div>
+
+  <div class="gems" id="gem-list">
+
+    <article class="gem found" data-status="found">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-found"/></svg><div><div class="who">Longwood</div><h3>Freshman merit scholarships</h3></div></div>
+      <p>Automatic with the Early Action application. Nothing to fill out.</p>
+      <div class="foot"><span class="badge b-done">Complete</span></div>
+    </article>
+
+    <article class="gem found" data-status="found">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-found"/></svg><div><div class="who">JMU Honors College</div><h3>Thomas A. Dingledine Scholarship</h3></div></div>
+      <p>Applied on deadline day, Nov 15. Recognizes academics, leadership, and service.</p>
+      <div class="foot"><span class="badge b-done">Submitted</span></div>
+    </article>
+
+    <article class="gem found" data-status="found">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-found"/></svg><div><div class="who">JMU</div><h3>General Scholarship Application</h3></div></div>
+      <p>Required for the Dingledine. Also opens the door to other JMU awards.</p>
+      <div class="foot"><span class="badge b-done">Submitted</span></div>
+    </article>
+
+    <article class="gem soon" data-status="todo">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Science NHS</div><h3>SNHS Student Scholarship</h3></div></div>
+      <p>For SNHS members. The application launches in early December.</p>
+      <div class="foot"><span class="due">Opens early Dec</span><span class="badge b-todo">Watch for it</span></div>
+    </article>
+
+    <article class="gem soon" data-status="todo" data-due="2027-01-01">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">JMU</div><h3>Second Century Scholarship (STEM)</h3></div></div>
+      <div class="prize">In-state tuition and fees, up to 4 years</div>
+      <p>Geology counts as a STEM major. One essay in the Madison Scholarships Hub. Also covers the Jones Scholarship.</p>
+      <div class="foot"><span class="due">Jan 1, 2027</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem digging" data-status="dig" data-due="2027-01-05">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-dig"/></svg><div><div class="who">Ronald Reagan Foundation</div><h3>GE-Reagan Foundation Scholarship</h3></div></div>
+      <div class="prize">$10,000 a year, up to $40,000</div>
+      <p>Started. Leadership, drive, integrity, and citizenship essay, plus 10 activities.</p>
+      <div class="foot"><span class="due">Jan 5, 2027 (verify)</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo" data-due="2027-01-08">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Virginia Tech</div><h3>Honors College Scholarship</h3></div></div>
+      <p>If invited to Honors. Short essay in Scholarship Central, in his own voice.</p>
+      <div class="foot"><span class="due">Jan 8, 2027</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo" data-due="2027-01-22">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Virginia Tech</div><h3>General Scholarship Application</h3></div></div>
+      <p>Do this one first. It unlocks the College of Science and alumni chapter applications.</p>
+      <div class="foot"><span class="due">Jan 22, 2027</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo" data-due="2027-01-22">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Virginia Tech</div><h3>College of Science scholarships</h3></div></div>
+      <p>Geosciences lives in the College of Science. Opens after the General Application.</p>
+      <div class="foot"><span class="due">Jan 22, 2027</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo" data-due="2027-02-01">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Virginia Tech</div><h3>Richmond Alumni Chapter Scholarship</h3></div></div>
+      <p>For incoming Hokies from the Richmond area. Through Scholarship Central.</p>
+      <div class="foot"><span class="due">Feb 1, 2027 (verify)</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo" data-due="2027-03-01">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">SEG Foundation</div><h3>SEG Geophysics Scholarship</h3></div></div>
+      <p>Geology is an allowed major. Three short essays and two teacher recommendations (due Mar 15).</p>
+      <div class="foot"><span class="due">Mar 1, 2027</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo" data-due="2027-03-05">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Virginia High School League</div><h3>VHSL Foundation Achievement Award</h3></div></div>
+      <div class="prize">$2,000</div>
+      <p>For scholar-athletes. The school nominates, so ask the volleyball coach.</p>
+      <div class="foot"><span class="due">Spring 2027 (verify)</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo" data-due="2027-03-05">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Community Foundation</div><h3>Greater Richmond scholarships</h3></div></div>
+      <p>Many local funds in one portal. Opens in January.</p>
+      <div class="foot"><span class="due">Early Mar 2027 (verify)</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo" data-due="2027-04-04">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Chesterfield</div><h3>Chesterfield Education Foundation</h3></div></div>
+      <p>Lots of local awards, including leadership and theater categories.</p>
+      <div class="foot"><span class="due">Early Apr 2027 (verify)</span><span class="count" data-days></span></div>
+    </article>
+
+    <article class="gem" data-status="todo">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Chesterfield</div><h3>FOLAR Environmental Stewardship</h3></div></div>
+      <p>For Chesterfield seniors heading into earth and environmental fields.</p>
+      <div class="foot"><span class="due">Date to verify</span></div>
+    </article>
+
+    <article class="gem" data-status="todo">
+      <div class="gtop"><svg aria-hidden="true"><use href="#g-rock"/></svg><div><div class="who">Cosby and Chesterfield</div><h3>Local senior scholarships</h3></div></div>
+      <p>Play Chesterfield Scholar Athletes and the Cosby senior list. Ask Mrs. Gibbons.</p>
+      <div class="foot"><span class="due">Spring 2027</span></div>
+    </article>
+
+  </div>
+  <div class="note"><strong>Field rule:</strong> every essay is written by Xavier in his own words. Several of these sponsors check for AI and plagiarism.</div>
 </section>
 
 <section id="strata">
@@ -496,7 +683,7 @@ tr:last-child td{border-bottom:0}
   <div class="wrap">
     <h2>Find the bones, then build the museum</h2>
     <p>Xavier hopes to study paleontology and one day run a natural history museum. This page keeps the paperwork on schedule so the real work can get done.</p>
-    <p><small>Last updated October 28, 2026. Deadlines come from each school's admissions page and the Common App. Always confirm on the official sites before relying on a date.</small></p>
+    <p><small>Last updated November 16, 2026. Deadlines come from each school's admissions page and the Common App. Always confirm on the official sites before relying on a date.</small></p>
     <div class="footprints" aria-hidden="true" id="prints"></div>
   </div>
 </footer>
@@ -513,6 +700,28 @@ tr:last-child td{border-bottom:0}
     if(!el) return;
     el.textContent = n<0 ? "Done" : String(n);
   }
+  // gem hunt counters and countdowns
+  var gems=document.querySelectorAll("#gem-list .gem");
+  var found=0, dig=0, todo=0, next=null;
+  for(var i=0;i<gems.length;i++){
+    var g=gems[i], st=g.getAttribute("data-status");
+    if(st==="found") found++; else if(st==="dig") dig++; else todo++;
+    var due=g.getAttribute("data-due"), c=g.querySelector("[data-days]");
+    if(due){
+      var parts=due.split("-"), n=days(+parts[0],+parts[1],+parts[2]);
+      if(c){ c.textContent = n<0 ? "Passed" : (n===0 ? "Today!" : n+" days left"); }
+      if(st!=="found" && n>=0 && (next===null || n<next)) next=n;
+    }
+  }
+  var nf=document.getElementById("n-found"); if(nf) nf.textContent=found;
+  var nd=document.getElementById("n-dig"); if(nd) nd.textContent=dig;
+  var nn=document.getElementById("n-next"); if(nn && next!==null) nn.textContent=next;
+  var total=found+dig+todo, v=document.getElementById("vein");
+  if(v && total){
+    v.innerHTML='<i class="v-found" style="width:'+(found/total*100)+'%"></i><i class="v-dig" style="width:'+(dig/total*100)+'%"></i>';
+    v.setAttribute("aria-label", found+" found, "+dig+" in progress, "+todo+" to go");
+  }
+
   var p=document.getElementById("prints");
   if(p){
     var s='<svg viewBox="0 0 40 50"><g fill="#d9a441"><ellipse cx="20" cy="36" rx="9" ry="11"/><ellipse cx="7" cy="17" rx="4.5" ry="9" transform="rotate(-18 7 17)"/><ellipse cx="20" cy="11" rx="4.5" ry="10"/><ellipse cx="33" cy="17" rx="4.5" ry="9" transform="rotate(18 33 17)"/></g></svg>';
