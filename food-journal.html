@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field Rations | Xavier's College Food Journal</title>
+<meta name="description" content="Field Rations: a college food journal of real dinners that stand in for takeout, with a Recipe of the Week, tags and field notes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#f1e7d3;
+  --sand-2:#e6d6b8;
+  --clay:#c98a4b;
+  --rust:#a4492a;
+  --umber:#4a3320;
+  --soil:#2b1d12;
+  --fern:#4f6b3a;
+  --fern-2:#dbe5c9;
+  --bone:#fbf6ea;
+  --ink:#2a2118;
+  --muted:#6f5e4b;
+  --line:#cdb994;
+  --gold:#d9a441;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:var(--sand);
+  line-height:1.55;
+  font-size:17px;
+}
+h1,h2,h3{font-family:"Alfa Slab One","Rockwell","Georgia",serif;font-weight:400;letter-spacing:.01em;margin:0}
+a{color:var(--rust)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* hero */
+.hero{
+  background:
+    radial-gradient(circle at 85% 20%, rgba(217,164,65,.35), transparent 40%),
+    linear-gradient(180deg,#3b2817 0%, #5a3a21 100%);
+  color:var(--bone);
+  padding:28px 0 0;
+  overflow:hidden;
+}
+.back{display:inline-block;color:#eadcc0;text-decoration:none;font-weight:600;font-size:.92rem;margin-bottom:22px}
+.back:hover{color:var(--gold)}
+.hero .eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:.8rem;font-weight:700;color:var(--gold)}
+.hero h1{font-size:clamp(2.1rem,6vw,3.7rem);line-height:1.05;margin:10px 0 14px}
+.hero p.lead{max-width:620px;font-size:1.1rem;color:#eadcc0;margin:0 0 26px}
+.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:end}
+.hero svg.pot{width:100%;max-width:300px;height:auto;display:block;margin:0 auto -4px}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.chip{background:rgba(251,246,234,.1);border:1px solid rgba(251,246,234,.28);border-radius:12px;padding:10px 16px;min-width:150px}
+.chip b{display:block;font-family:"Alfa Slab One",Georgia,serif;font-weight:400;font-size:1.9rem;line-height:1;color:var(--gold)}
+.chip span{font-size:.85rem;color:#eadcc0}
+.strata-edge{height:26px;background:
+  repeating-linear-gradient(90deg,transparent 0 38px,rgba(0,0,0,.08) 38px 40px),
+  linear-gradient(180deg,var(--clay) 0 33%, #b57638 33% 66%, #9a6230 66% 100%);}
+
+/* nav */
+nav.jump{position:sticky;top:0;z-index:5;background:var(--soil);border-bottom:3px solid var(--gold)}
+nav.jump .wrap{display:flex;gap:6px;overflow-x:auto;padding:0 12px}
+nav.jump a{color:#eadcc0;text-decoration:none;white-space:nowrap;padding:12px 14px;font-weight:600;font-size:.93rem}
+nav.jump a:hover{color:var(--gold)}
+
+section{padding:52px 0 8px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.sec-head h2{font-size:clamp(1.5rem,3.5vw,2.1rem);color:var(--umber)}
+.sec-head svg{width:40px;height:40px;flex:none}
+.sub{color:var(--muted);margin:0 0 24px;max-width:680px}
+
+/* recipe of the week */
+.rotw{
+  display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;
+  background:var(--soil);color:#eadcc0;border-radius:16px;padding:22px 24px;
+  border-bottom:6px solid var(--gold);position:relative;overflow:hidden;
+}
+.rotw::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 92% 10%, rgba(217,164,65,.28), transparent 45%);
+  pointer-events:none;
+}
+.stamp{
+  width:110px;height:110px;border-radius:50%;border:3px dashed var(--gold);
+  display:grid;place-items:center;text-align:center;transform:rotate(-8deg);
+  font-family:"Alfa Slab One",Georgia,serif;color:var(--gold);font-size:.82rem;line-height:1.15;padding:10px;
+}
+.stamp b{display:block;font-size:1.7rem;font-weight:400}
+.rotw h3{color:var(--bone);font-size:clamp(1.3rem,3vw,1.7rem);margin:4px 0 6px}
+.rotw .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:700;color:var(--gold)}
+.rotw p{margin:0 0 12px;max-width:620px}
+.rotw .meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.92rem;margin-bottom:14px}
+.rotw .meta b{color:var(--gold);font-weight:700}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.filter{
+  font:inherit;font-size:.9rem;font-weight:700;cursor:pointer;
+  border:2px solid var(--umber);background:transparent;color:var(--umber);
+  border-radius:999px;padding:6px 14px;
+}
+.filter:hover{background:var(--sand-2)}
+.filter[aria-pressed="true"]{background:var(--umber);color:var(--bone)}
+.count-line{font-size:.9rem;color:var(--muted);margin:-8px 0 18px}
+
+/* recipe cards */
+.recipes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;align-items:start}
+.recipe{
+  background:var(--bone);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 2px 0 var(--line);scroll-margin-top:70px;
+}
+.recipe .tag{
+  background:var(--umber);color:var(--bone);display:flex;justify-content:space-between;gap:10px;
+  font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:8px 18px;
+}
+.recipe .tag .lvl{color:var(--gold)}
+.recipe .body{padding:14px 18px 16px}
+.recipe h3{font-size:1.3rem;color:var(--rust);line-height:1.2;margin:0 0 4px}
+.recipe .copy{font-size:.9rem;font-weight:700;color:var(--muted);margin:0 0 8px}
+.recipe .blurb{margin:0 0 10px;font-size:.97rem}
+.facts{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem;margin-bottom:10px}
+.facts span b{color:var(--umber)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.badge{display:inline-block;border-radius:999px;padding:3px 11px;font-size:.78rem;font-weight:700;white-space:nowrap;background:#ecdcc9;color:#6a4b30}
+.badge.t-quick{background:var(--fern-2);color:#34491f}
+.badge.t-fakeout{background:#f6e2b5;color:#7a4e0c}
+.badge.t-dorm{background:#e5d6ef;color:#4f2f6b}
+details{border-top:1px dashed var(--line);margin-top:4px}
+summary{
+  cursor:pointer;list-style:none;font-weight:700;color:var(--umber);padding:10px 0 2px;
+  display:flex;align-items:center;gap:8px;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{
+  content:"";width:0;height:0;border-left:7px solid var(--rust);border-top:5px solid transparent;border-bottom:5px solid transparent;
+  transition:transform .15s ease;
+}
+details[open] summary::before{transform:rotate(90deg)}
+details h4{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;color:var(--umber);font-size:1rem;margin:14px 0 6px}
+details ul,details ol{margin:0;padding-left:22px;font-size:.95rem}
+details li{margin-bottom:5px}
+ol.steps{list-style:none;padding-left:0;counter-reset:s}
+ol.steps>li{counter-increment:s;position:relative;padding-left:36px;margin:8px 0}
+ol.steps>li::before{
+  content:counter(s);position:absolute;left:0;top:1px;width:25px;height:25px;border-radius:50%;
+  background:var(--rust);color:#fff;font-weight:700;font-size:.82rem;display:grid;place-items:center;
+}
+.fieldnote{background:var(--fern-2);border-left:6px solid var(--fern);border-radius:0 10px 10px 0;padding:10px 14px;margin-top:12px}
+.fieldnote h4{margin-top:0}
+.fieldnote ul{padding-left:18px}
+
+/* verdict */
+.verdict{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.verdict span{font-size:.85rem;font-weight:700;color:var(--muted);margin-right:2px}
+.vbtn{
+  font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;border-radius:8px;padding:5px 12px;
+  border:2px solid var(--line);background:#fff;color:var(--umber);
+}
+.vbtn:hover{border-color:var(--umber)}
+.vbtn[aria-pressed="true"][data-v="keeper"]{background:var(--fern);border-color:var(--fern);color:#fff}
+.vbtn[aria-pressed="true"][data-v="tweak"]{background:var(--gold);border-color:var(--gold);color:var(--soil)}
+.vbtn[aria-pressed="true"][data-v="drop"]{background:var(--rust);border-color:var(--rust);color:#fff}
+
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:.95rem;padding:10px 16px;border-radius:10px;border:2px solid var(--gold);cursor:pointer;font-family:inherit}
+.btn-gold{background:var(--gold);color:var(--soil)}
+.btn-gold:hover{background:#e8be6a}
+
+/* rules + pantry */
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
+.card{background:var(--bone);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 2px 0 var(--line);padding-bottom:16px}
+.card .tag{background:var(--umber);color:var(--bone);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:8px 18px}
+.card h3{font-size:1.3rem;margin:14px 18px 8px;color:var(--rust)}
+.rules{list-style:none;margin:0;padding:0 18px}
+.rules li{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed var(--sand-2)}
+.rules li:last-child{border-bottom:0}
+.rules b.n{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;color:var(--rust);min-width:26px}
+.plate{display:flex;align-items:center;gap:16px;margin:4px 18px 10px}
+.plate svg{width:96px;height:96px;flex:none}
+.plate ul{list-style:none;margin:0;padding:0;font-size:.92rem}
+.plate li{display:flex;align-items:center;gap:8px;margin:3px 0}
+.plate em{display:inline-block;width:12px;height:12px;border-radius:3px}
+.pantry{list-style:none;margin:0;padding:0 18px}
+.pantry li{display:flex;gap:12px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--sand-2);font-size:.95rem}
+.pantry li:last-child{border-bottom:0}
+.pantry .box{flex:none;width:20px;height:20px;border-radius:5px;border:2px solid var(--clay);background:#fff;margin-top:3px}
+
+/* closing */
+.finish{margin-top:56px;background:var(--soil);color:#eadcc0;padding:40px 0 32px;border-top:8px solid var(--gold)}
+.finish h2{color:var(--gold);font-size:1.5rem;margin-bottom:10px}
+.finish p{max-width:700px;margin:0 0 10px}
+.finish a{color:var(--gold)}
+.finish small{color:#b9a98d}
+
+@media (max-width:860px){
+  .hero-grid,.two,.recipes{grid-template-columns:1fr}
+  .hero svg.pot{max-width:220px}
+  body{font-size:16px}
+}
+@media (max-width:560px){
+  .rotw{grid-template-columns:1fr}
+  .stamp{width:92px;height:92px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}summary::before{transition:none}}
+@media print{nav.jump,.filters,.verdict,.back,.hero svg.pot{display:none}details{display:block}.recipe{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="wrap">
+    <a class="back" href="index.html">&larr; Back to the Dig Site</a>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Camp kitchen log</div>
+        <h1>Field Rations</h1>
+        <p class="lead">A college food journal for a future geology major who refuses to live on dining hall pizza. Every recipe here stands in for a takeout order, costs less than the delivery fee and tip, and usually leaves leftovers for tomorrow's lunch.</p>
+        <div class="chips" aria-label="Journal stats">
+          <div class="chip"><b id="n-recipes">5</b><span>recipes in the log</span></div>
+          <div class="chip"><b id="n-quick">-</b><span>ready in 35 minutes or less</span></div>
+          <div class="chip"><b id="n-keepers">0</b><span>marked as keepers on this device</span></div>
+        </div>
+      </div>
+      <!-- camp pot over a fire -->
+      <svg class="pot" viewBox="0 0 240 190" role="img" aria-label="A camp cooking pot over a small fire">
+        <path d="M40 30 L120 8 L200 30" fill="none" stroke="#eadcc0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M120 8 V44" stroke="#eadcc0" stroke-width="4"/>
+        <path d="M118 52 C116 40 124 36 122 26" fill="none" stroke="#f1e7d3" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+        <path d="M98 50 C96 40 104 36 102 28" fill="none" stroke="#f1e7d3" stroke-width="3" stroke-linecap="round" opacity=".4"/>
+        <path d="M140 50 C138 40 146 36 144 28" fill="none" stroke="#f1e7d3" stroke-width="3" stroke-linecap="round" opacity=".4"/>
+        <ellipse cx="120" cy="66" rx="62" ry="12" fill="#f1e7d3"/>
+        <path d="M58 66 C58 120 80 138 120 138 C160 138 182 120 182 66 Z" fill="#f1e7d3"/>
+        <ellipse cx="120" cy="66" rx="54" ry="8" fill="#d9a441"/>
+        <path d="M66 92 H174" stroke="#c98a4b" stroke-width="3" opacity=".7"/>
+        <path d="M84 176 L156 150 M84 150 L156 176" stroke="#9a6230" stroke-width="9" stroke-linecap="round"/>
+        <path d="M120 170 C100 168 98 152 108 144 C108 152 114 154 116 150 C114 140 120 132 128 128 C126 138 136 142 134 152 C140 150 142 146 142 142 C150 154 142 170 120 170 Z" fill="#d9a441"/>
+        <path d="M120 166 C110 164 110 156 116 152 C118 158 122 156 124 152 C130 158 130 164 120 166 Z" fill="#a4492a"/>
+      </svg>
+    </div>
+  </div>
+  <div class="strata-edge" aria-hidden="true"></div>
+</header>
+
+<nav class="jump" aria-label="Page sections">
+  <div class="wrap">
+    <a href="#week">Recipe of the Week</a>
+    <a href="#log">The Recipe Log</a>
+    <a href="#rules">Camp Rules</a>
+    <a href="#pantry">Camp Pantry</a>
+    <a href="index.html">Dig Site Home</a>
+  </div>
+</nav>
+
+<main class="wrap">
+<noscript><p class="sub" style="margin-top:30px">The recipe log needs JavaScript turned on to show the recipes.</p></noscript>
+
+<section id="week">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#d9a441"/><path d="M20 8 L23.5 16 L32 16.8 L25.6 22.4 L27.6 31 L20 26.6 L12.4 31 L14.4 22.4 L8 16.8 L16.5 16 Z" fill="#4a3320"/></svg>
+    <h2>Recipe of the Week</h2>
+  </div>
+  <p class="sub">A new featured find every Monday, pulled from the log. Cook this one before the week runs out.</p>
+  <div class="rotw" id="rotw" aria-live="polite"></div>
+</section>
+
+<section id="log">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="4" width="26" height="32" rx="3" fill="#fbf6ea" stroke="#4a3320" stroke-width="2.4"/><path d="M12 12 H28 M12 18 H28 M12 24 H22" stroke="#a4492a" stroke-width="2.4" stroke-linecap="round"/><circle cx="28" cy="29" r="5" fill="#d9a441" stroke="#4a3320" stroke-width="2"/></svg>
+    <h2>The Recipe Log</h2>
+  </div>
+  <p class="sub">Each entry lists the takeout spot it replaces, how long it takes, and field notes from the kitchen. Tap a tag to filter. After you cook one, give it a verdict so the keepers rise to the top of the rotation.</p>
+  <div class="filters" id="filters" role="group" aria-label="Filter recipes by tag"></div>
+  <p class="count-line" id="count-line"></p>
+  <div class="recipes" id="recipes"></div>
+</section>
+
+<section id="rules">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="#fbf6ea" stroke="#4a3320" stroke-width="2.4"/><path d="M20 20 L20 3 A17 17 0 0 1 37 20 Z" fill="#4f6b3a"/><path d="M20 20 L37 20 A17 17 0 0 1 20 37 Z" fill="#a4492a"/><path d="M20 20 L20 37 A17 17 0 0 1 3 20 Z" fill="#d9a441"/></svg>
+    <h2>Camp Rules</h2>
+  </div>
+  <p class="sub">How the log works, and how to keep dinner from turning into another delivery order.</p>
+  <div class="two">
+    <article class="card">
+      <div class="tag">The routine</div>
+      <h3>Five rules for the camp kitchen</h3>
+      <ol class="rules">
+        <li><b class="n">1</b><span><strong>Sunday planning, 15 minutes.</strong> Pick the week's dinners from the log and write one grocery list.</span></li>
+        <li><b class="n">2</b><span><strong>One supply run.</strong> Shop once from the list so there are no midweek trips that end at a drive-through.</span></li>
+        <li><b class="n">3</b><span><strong>Cook once, eat twice.</strong> At least one batch night a week, with extras packed for lunch.</span></li>
+        <li><b class="n">4</b><span><strong>Match the calendar.</strong> Save the quick recipes for exam weeks and late practices.</span></li>
+        <li><b class="n">5</b><span><strong>Rate every dish.</strong> Keeper, tweak or drop. Keepers go into the rotation.</span></li>
+      </ol>
+    </article>
+    <article class="card">
+      <div class="tag">Build the plate</div>
+      <h3>The Mediterranean plate</h3>
+      <div class="plate">
+        <svg viewBox="0 0 100 100" role="img" aria-label="Plate diagram: half vegetables, a quarter protein, a quarter beans or grains">
+          <circle cx="50" cy="50" r="48" fill="#fbf6ea" stroke="#cdb994" stroke-width="3"/>
+          <path d="M50 50 L50 8 A42 42 0 0 0 50 92 Z" fill="#4f6b3a"/>
+          <path d="M50 50 L50 8 A42 42 0 0 1 92 50 Z" fill="#a4492a"/>
+          <path d="M50 50 L92 50 A42 42 0 0 1 50 92 Z" fill="#d9a441"/>
+        </svg>
+        <ul>
+          <li><em style="background:#4f6b3a"></em>Half: vegetables</li>
+          <li><em style="background:#a4492a"></em>A quarter: chicken, fish or turkey</li>
+          <li><em style="background:#d9a441"></em>A quarter: beans, lentils or whole grains</li>
+        </ul>
+      </div>
+      <p style="margin:0 18px">Olive oil is the main fat. Still hungry after a long practice? Add brown rice or a whole-wheat pita on the side.</p>
+    </article>
+  </div>
+</section>
+
+<section id="pantry">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="9" y="8" width="22" height="28" rx="4" fill="#fbf6ea" stroke="#4a3320" stroke-width="2.4"/><rect x="12" y="3" width="16" height="7" rx="2" fill="#a4492a"/><path d="M13 20 H27 M13 26 H23" stroke="#c98a4b" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <h2>Stock the Camp Pantry</h2>
+  </div>
+  <p class="sub">The staples that show up again and again in the log. Keep these on the shelf and most nights only need a stop for fresh protein and produce.</p>
+  <div class="card" style="padding-top:12px"><ul class="pantry" id="pantry-list"></ul></div>
+</section>
+</main>
+
+<footer class="finish">
+  <div class="wrap">
+    <h2>Dig in</h2>
+    <p>Good food is part of the field kit. New recipes get added to the log as they earn a spot. <a href="index.html">Back to the Dig Site</a>.</p>
+    <p><small>Started November 2026. Cooking temperatures are the standard safe targets: 165°F for chicken and turkey, 145°F for salmon.</small></p>
+  </div>
+</footer>
+
+<script src="food-journal/recipes.js"></script>
+<script>
+(function(){
+  var R = window.FIELD_RATIONS || [];
+  var P = window.FIELD_PANTRY || [];
+  var KEY = "fieldRationsVerdicts";
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g,function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function load(){
+    try{ var v = JSON.parse(localStorage.getItem(KEY) || "{}"); return (v && typeof v === "object") ? v : {}; }
+    catch(e){ return {}; }
+  }
+  function save(v){ try{ localStorage.setItem(KEY, JSON.stringify(v)); }catch(e){} }
+  var verdicts = load();
+
+  function tagClass(t){
+    var k = t.toLowerCase();
+    if(k === "quick") return "t-quick";
+    if(k === "fakeout takeout") return "t-fakeout";
+    if(k === "dorm hack" || k === "air fryer") return "t-dorm";
+    return "";
+  }
+  function tagsHtml(tags){
+    return tags.map(function(t){ return '<span class="badge '+tagClass(t)+'">'+esc(t)+'</span>'; }).join("");
+  }
+  function list(items, cls, ordered){
+    var tag = ordered ? "ol" : "ul";
+    return "<"+tag+(cls ? ' class="'+cls+'"' : "")+">"+items.map(function(i){ return "<li>"+esc(i)+"</li>"; }).join("")+"</"+tag+">";
+  }
+
+  // stats
+  var quick = R.filter(function(r){ return r.time <= 35; }).length;
+  document.getElementById("n-recipes").textContent = R.length;
+  document.getElementById("n-quick").textContent = quick;
+  function keeperCount(){
+    var n = 0;
+    for(var k in verdicts){ if(verdicts[k] === "keeper") n++; }
+    document.getElementById("n-keepers").textContent = n;
+  }
+  keeperCount();
+
+  // recipe of the week: rotates every Monday
+  function weekIndex(){
+    var now = new Date();
+    var monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - ((now.getDay() + 6) % 7));
+    return Math.floor(monday.getTime() / (7 * 86400000));
+  }
+  if(R.length){
+    var pick = R[((weekIndex() % R.length) + R.length) % R.length];
+    document.getElementById("rotw").innerHTML =
+      '<div class="stamp" aria-hidden="true"><span><b>#'+(R.indexOf(pick)+1)+'</b>this week</span></div>'+
+      '<div>'+
+        '<div class="kicker">Featured find</div>'+
+        '<h3>'+esc(pick.name)+'</h3>'+
+        '<p>'+esc(pick.blurb)+'</p>'+
+        '<div class="meta"><span><b>Replaces:</b> '+esc(pick.copycat)+'</span><span><b>Time:</b> '+pick.time+' min</span><span><b>Serves:</b> '+esc(pick.serves)+'</span></div>'+
+        '<a class="btn btn-gold" href="#'+esc(pick.id)+'" data-open="'+esc(pick.id)+'">Open the recipe</a>'+
+      '</div>';
+  }
+
+  // cards
+  var box = document.getElementById("recipes");
+  box.innerHTML = R.map(function(r){
+    var v = verdicts[r.id] || "";
+    function vb(val, label){
+      return '<button type="button" class="vbtn" data-id="'+esc(r.id)+'" data-v="'+val+'" aria-pressed="'+(v === val)+'">'+label+'</button>';
+    }
+    return '<article class="recipe" id="'+esc(r.id)+'" data-tags="'+esc(r.tags.join("|"))+'">'+
+      '<div class="tag"><span>Replaces '+esc(r.copycat)+'</span><span class="lvl">'+esc(r.level)+'</span></div>'+
+      '<div class="body">'+
+        '<h3>'+esc(r.name)+'</h3>'+
+        '<p class="blurb">'+esc(r.blurb)+'</p>'+
+        '<div class="facts"><span><b>Time:</b> '+r.time+' min</span><span><b>Serves:</b> '+esc(r.serves)+'</span></div>'+
+        '<div class="tags">'+tagsHtml(r.tags)+'</div>'+
+        '<details>'+
+          '<summary>Open the recipe</summary>'+
+          '<h4>What you need</h4>'+list(r.ingredients)+
+          '<h4>How to make it</h4>'+list(r.steps, "steps", true)+
+          (r.notes && r.notes.length ? '<div class="fieldnote"><h4>Field notes</h4>'+list(r.notes)+'</div>' : "")+
+          '<div class="verdict" role="group" aria-label="Your verdict"><span>Verdict:</span>'+vb("keeper","Keeper")+vb("tweak","Tweak it")+vb("drop","Drop it")+'</div>'+
+        '</details>'+
+      '</div>'+
+    '</article>';
+  }).join("");
+
+  box.addEventListener("click", function(e){
+    var b = e.target.closest(".vbtn");
+    if(!b) return;
+    var id = b.getAttribute("data-id"), val = b.getAttribute("data-v");
+    if(verdicts[id] === val){ delete verdicts[id]; } else { verdicts[id] = val; }
+    save(verdicts);
+    var btns = box.querySelectorAll('.vbtn[data-id="'+id+'"]');
+    for(var i=0;i<btns.length;i++){
+      btns[i].setAttribute("aria-pressed", String(verdicts[id] === btns[i].getAttribute("data-v")));
+    }
+    keeperCount();
+  });
+
+  // open a recipe from a link
+  function openId(id){
+    var el = document.getElementById(id);
+    if(el){ var d = el.querySelector("details"); if(d) d.open = true; }
+  }
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("[data-open]");
+    if(a) openId(a.getAttribute("data-open"));
+  });
+  if(location.hash) openId(location.hash.slice(1));
+
+  // filters
+  var all = [];
+  R.forEach(function(r){ r.tags.forEach(function(t){ if(all.indexOf(t) < 0) all.push(t); }); });
+  var fbox = document.getElementById("filters");
+  fbox.innerHTML = '<button type="button" class="filter" data-tag="" aria-pressed="true">All</button>' +
+    all.map(function(t){ return '<button type="button" class="filter" data-tag="'+esc(t)+'" aria-pressed="false">'+esc(t)+'</button>'; }).join("");
+  var countLine = document.getElementById("count-line");
+  function applyFilter(tag){
+    var cards = box.querySelectorAll(".recipe"), shown = 0;
+    for(var i=0;i<cards.length;i++){
+      var ok = !tag || cards[i].getAttribute("data-tags").split("|").indexOf(tag) >= 0;
+      cards[i].hidden = !ok;
+      if(ok) shown++;
+    }
+    countLine.textContent = tag ? ("Showing "+shown+" of "+cards.length+" recipes tagged "+tag+".") : ("Showing all "+cards.length+" recipes.");
+    var fb = fbox.querySelectorAll(".filter");
+    for(var j=0;j<fb.length;j++){ fb[j].setAttribute("aria-pressed", String(fb[j].getAttribute("data-tag") === tag)); }
+  }
+  fbox.addEventListener("click", function(e){
+    var b = e.target.closest(".filter");
+    if(b) applyFilter(b.getAttribute("data-tag"));
+  });
+  applyFilter("");
+
+  // pantry
+  document.getElementById("pantry-list").innerHTML = P.map(function(p){
+    return '<li><span class="box" aria-hidden="true"></span><span>'+esc(p)+'</span></li>';
+  }).join("");
+})();
+</script>
+</body>
+</html>
