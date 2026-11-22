@@ -177,6 +177,50 @@ window.FIELD_RATIONS = [
   }
 ];
 
+/*
+  Shopping list for all five recipes above, with the total to buy for the week.
+  Oils, vinegars, sauces and spices live in FIELD_PANTRY below.
+*/
+window.FIELD_SHOPPING = [
+  "Lemons, 4",
+  "Garlic, 2 heads",
+  "English cucumbers, 2",
+  "Cherry tomatoes, 3 pints",
+  "Large slicing tomato, 1",
+  "Red onions, 2",
+  "Green onions, 1 bunch",
+  "Zucchini, 3",
+  "Bell peppers, 3, any color",
+  "Broccoli florets, 2 1/4 lb",
+  "Green beans, 12 oz",
+  "Mixed greens or baby spinach, one 5 oz bag",
+  "Flat-leaf parsley, 1 bunch",
+  "Fresh ginger, 1 small piece",
+  "Butter lettuce, 1 head",
+  "Sugar snap peas, 8 oz",
+  "Fresh dill, 1 small bunch (or 1 tsp dried)",
+  "Boneless skinless chicken thighs, 2 lb",
+  "Chicken tenderloins, 1 1/2 lb",
+  "93% lean ground turkey, 1 1/4 lb",
+  "Salmon fillet, 1 1/2 lb",
+  "Frozen large shrimp, peeled and deveined, 1 1/4 lb",
+  "Frozen riced cauliflower, 2 bags (12 oz each)",
+  "Plain 2% Greek yogurt, one 16 oz tub",
+  "Eggs, 2",
+  "Parmesan wedge, about 3 oz",
+  "Greek feta in brine, 8 oz",
+  "Kalamata olives, 1 small jar",
+  "Chickpeas, one 15 oz can",
+  "Cannellini beans, one 15 oz can",
+  "Green or brown lentils, 1 lb bag",
+  "Almond flour, 1 lb bag",
+  "Tahini, 1 small jar",
+  "Mild harissa paste, 1 small jar (optional)",
+  "Parchment paper",
+  "Whole-wheat pita or thin whole-wheat buns (optional)",
+  "Brown rice (optional)"
+];
+
 window.FIELD_PANTRY = [
   "Olive oil and avocado oil",
   "Low-sodium soy sauce, toasted sesame oil, rice vinegar, red wine vinegar",

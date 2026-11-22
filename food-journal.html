@@ -187,6 +187,12 @@ ol.steps>li::before{
 .pantry{list-style:none;margin:0;padding:0 18px}
 .pantry li{display:flex;gap:12px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--sand-2);font-size:.95rem}
 .pantry li:last-child{border-bottom:0}
+.supply{list-style:none;margin:0;padding:0 18px;columns:2;column-gap:28px}
+.supply li{break-inside:avoid;border-bottom:1px dashed var(--sand-2)}
+.supply label{display:flex;gap:12px;align-items:flex-start;padding:7px 0;font-size:.95rem;cursor:pointer}
+.supply input{flex:none;width:20px;height:20px;margin:3px 0 0;accent-color:var(--fern)}
+.supply input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(111,94,75,.5)}
+@media (max-width:640px){.supply{columns:1}}
 .pantry .box{flex:none;width:20px;height:20px;border-radius:5px;border:2px solid var(--clay);background:#fff;margin-top:3px}
 
 /* closing */
@@ -248,6 +254,7 @@ ol.steps>li::before{
   <div class="wrap">
     <a href="#week">Recipe of the Week</a>
     <a href="#log">The Recipe Log</a>
+    <a href="#supply">Supply Run</a>
     <a href="#rules">Camp Rules</a>
     <a href="#pantry">Camp Pantry</a>
     <a href="index.html">Dig Site Home</a>
@@ -275,6 +282,15 @@ ol.steps>li::before{
   <div class="filters" id="filters" role="group" aria-label="Filter recipes by tag"></div>
   <p class="count-line" id="count-line"></p>
   <div class="recipes" id="recipes"></div>
+</section>
+
+<section id="supply">
+  <div class="sec-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 10 H11 L15 28 H31 L34 15 H13" fill="none" stroke="#4a3320" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="33" r="2.6" fill="#a4492a"/><circle cx="29" cy="33" r="2.6" fill="#a4492a"/></svg>
+    <h2>Supply Run: Shopping List</h2>
+  </div>
+  <p class="sub">Everything needed to cook all five recipes in the log, with the total to buy. Tick items off as they go in the cart. Oils, vinegars, sauces and spices are in the Camp Pantry list.</p>
+  <div class="card" style="padding-top:12px"><ul class="supply" id="supply-list"></ul></div>
 </section>
 
 <section id="rules">
@@ -339,6 +355,7 @@ ol.steps>li::before{
 (function(){
   var R = window.FIELD_RATIONS || [];
   var P = window.FIELD_PANTRY || [];
+  var S = window.FIELD_SHOPPING || [];
   var KEY = "fieldRationsVerdicts";
 
   function esc(s){
@@ -470,6 +487,11 @@ ol.steps>li::before{
     if(b) applyFilter(b.getAttribute("data-tag"));
   });
   applyFilter("");
+
+  // shopping list
+  document.getElementById("supply-list").innerHTML = S.map(function(item, i){
+    return '<li><label><input type="checkbox" id="supply-'+i+'"><span>'+esc(item)+'</span></label></li>';
+  }).join("");
 
   // pantry
   document.getElementById("pantry-list").innerHTML = P.map(function(p){
